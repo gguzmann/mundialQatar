@@ -12,7 +12,7 @@ export const NavBar = () => {
         <Button color="inherit" onClick={() => navigation('/home')} sx={{ flexGrow: 1 }}>Home</Button>
         <Button color="inherit" onClick={() => navigation('/partidos')} sx={{ flexGrow: 1 }}>Partidos</Button>
         <Button color="inherit" onClick={() => navigation('/equipos')} sx={{ flexGrow: 1 }}>Equipos</Button>
-        <Button color="inherit" onClick={() => navigation('/test')} sx={{ flexGrow: 1 }}>Login</Button>
+        {/* <Button color="inherit" onClick={() => navigation('/test')} sx={{ flexGrow: 1 }}>Login</Button> */}
       </Toolbar>
     </AppBar>
     <Outlet/>
