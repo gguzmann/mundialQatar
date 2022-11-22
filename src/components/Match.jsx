@@ -4,30 +4,41 @@ import React from 'react'
 export const Match = ({ match }) => {
 
     const fecha = new Date(match.datetime)
+    const fechaProgress = new Date(match.datetime)
     const dia = new Date(match.datetime).toLocaleDateString("es-CL", { weekday: 'short', month: 'numeric', day: 'numeric' })
     const hora = fecha.getHours() + ':00'
     const hoy = new Date()
 
-    console.log('hoy', hoy.getDate())
-    console.log('fecha', fecha.getHours())
     return (
         <>
             <Paper sx={{ display: 'flex', m: 2, p: 2 }}>
                 <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
                     <Box>
                         <div>{dia}</div>
+
                         {
-                            hoy >= new Date(match.datetime) ?
+                            hoy > new Date(fecha.setHours(fecha.getHours() + 2)) ?
                                 'Finalizado'
                                 :
                                 <div>{hora}</div>
 
                         }
-                        {hoy.getDate() == new Date(match.datetime).getDate()
-                            && hoy.getHours() > fecha.getHours() && hoy.getHours() < fecha.getHours() + 2 ?
-                            <LinearProgress />
-                            :
-                            ''}
+
+                        {
+                            hoy > new Date(fechaProgress.setHours(fechaProgress.getHours()))
+                                && hoy < new Date(fechaProgress.setHours(fechaProgress.getHours() + 2))
+                                ?
+
+                                <>
+                                    <LinearProgress />
+                                    <Typography color="primary">
+                                        {hoy.getMinutes() + "'"}
+                                    </Typography>
+                                </>
+                                :
+                                ''
+                        }
+
                     </Box>
                 </Box>
                 <Box sx={{ flexGrow: 10 }}>

@@ -18,14 +18,10 @@ export const Equipos = () => {
   }, [])
 
   return (
-    <Box >
-      <ul>
-        <Box >
+    <Box sx={{mx: 20}}>
         {
           groups.map((x, i) => <GruposCard key={i} group={x}/>)
         }
-        </Box>
-      </ul>
     </Box>
   )
 }

@@ -5,9 +5,9 @@ export const GruposCard = ({ group }) => {
     return (
         <>
         Grupo {group.letter}
-            <TableContainer sx={{m: 2, maxWidth: '80%', border: 1, borderColor: 'divider'}} >
+            <TableContainer sx={{m: 2, maxWidth: '100%', border: 1, borderColor: 'divider'}} >
                 <Table >
-                    <TableHead component={Paper} elevation={3}>
+                    <TableHead sx={{backgroundColor: 'rgba(255, 255, 255, .1)'}}>
                         <TableRow>
                         <TableCell>Equipo</TableCell>
                         <TableCell>Pts</TableCell>
