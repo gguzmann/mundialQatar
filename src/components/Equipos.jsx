@@ -1,4 +1,6 @@
+import { Box } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { GruposCard } from './GruposCard'
 export const Equipos = () => {
 
   const [groups, setGroups] = useState([])
@@ -16,22 +18,14 @@ export const Equipos = () => {
   }, [])
 
   return (
-    <>
-      <div>Equipos</div>
+    <Box >
       <ul>
+        <Box >
         {
-          groups.map((x, i) => (
-            <div key={i}>
-              <li >{x.letter}</li>
-              <ul>
-              {
-                x.teams.map((y,i) => <li key={i}>{y.name}</li>)
-              }
-              </ul>
-            </div>
-          ))
+          groups.map((x, i) => <GruposCard key={i} group={x}/>)
         }
+        </Box>
       </ul>
-    </>
+    </Box>
   )
 }
