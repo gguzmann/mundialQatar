@@ -1,4 +1,6 @@
+import { Box } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { Match } from './Match'
 
 export const Partidos = () => {
 
@@ -11,6 +13,7 @@ export const Partidos = () => {
       .then(response => response.json())
       .catch(err => err)
       .then(data => {
+        // setPartidos(data.filter(x => x.id > 3))
         setPartidos(data)
         console.log(data)
       } )
@@ -18,14 +21,13 @@ export const Partidos = () => {
   }, [])
 
   return (
-    <>
+    <Box sx={{mx: '15%'}}>
       <div>Partidos</div>
-      <ul>
+
 
       {
-        partidos.map((match, i) => <li key={i}>{match.home_team.name} vs {match.away_team.name}</li>)
+        partidos.map((match, i) => <Match key={i} match={match} />)
       }
-      </ul>
-    </>
+    </Box>
   )
 }
