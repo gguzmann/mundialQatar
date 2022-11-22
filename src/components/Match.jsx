@@ -4,24 +4,30 @@ import React from 'react'
 export const Match = ({ match }) => {
 
     const fecha = new Date(match.datetime)
-    const dia = new Date(match.datetime).toLocaleDateString("es-CL", { weekday: 'short',  month: 'numeric', day: 'numeric' })
+    const dia = new Date(match.datetime).toLocaleDateString("es-CL", { weekday: 'short', month: 'numeric', day: 'numeric' })
     const hora = fecha.getHours() + ':00'
     const hoy = new Date()
 
-        console.log('hoy', hoy.getHours())
-        console.log('fecha', fecha.getHours() )
+    console.log('hoy', hoy.getDate())
+    console.log('fecha', fecha.getHours())
     return (
         <>
             <Paper sx={{ display: 'flex', m: 2, p: 2 }}>
                 <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
                     <Box>
                         <div>{dia}</div>
-                        <div>{hora}</div>
-                        {hoy.getDay() == new Date(match.datetime).getDay() 
-                        && hoy.getHours() > fecha.getHours() && hoy.getHours() <= fecha.getHours() + 2 ?
-                         <LinearProgress /> 
-                         :  
-                          '' }
+                        {
+                            hoy >= new Date(match.datetime) ?
+                                'Finalizado'
+                                :
+                                <div>{hora}</div>
+
+                        }
+                        {hoy.getDate() == new Date(match.datetime).getDate()
+                            && hoy.getHours() > fecha.getHours() && hoy.getHours() < fecha.getHours() + 2 ?
+                            <LinearProgress />
+                            :
+                            ''}
                     </Box>
                 </Box>
                 <Box sx={{ flexGrow: 10 }}>
