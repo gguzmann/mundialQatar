@@ -2,11 +2,12 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App'
+import { Apostar } from './components/Apostar';
 import { Equipos } from './components/Equipos';
 import { Home } from './components/Home';
 import { NavBar } from './components/NavBar';
 import { Partidos } from './components/Partidos';
+import { AuthProvider } from './context/authContext';
 
 const darkTheme = createTheme({
   palette: {
@@ -22,7 +23,8 @@ const router = createBrowserRouter(
       errorElement: <h1>Error</h1>,
       children: [
         {
-          path: "home",
+          index: true,
+          path: "/",
           element: <Home />
         },
         {
@@ -32,6 +34,10 @@ const router = createBrowserRouter(
         {
           path: "equipos",
           element: <Equipos />
+        },
+        {
+          path: "apostar",
+          element: <Apostar />
         }
 
       ]
@@ -42,9 +48,11 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
+  <AuthProvider>
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <RouterProvider router={router} />
     </ThemeProvider>
+  </AuthProvider>
   // </React.StrictMode>
 )

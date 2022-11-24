@@ -9,6 +9,8 @@ export const CurrentMatchCard = ({ match }) => {
     const hora = fecha.getHours() + ':00'
     const hoy = new Date()
 
+    console.log((hoy - fecha)/60)
+
     return (
         <Card key={match.id} sx={{ width: '25%' }}>
             <CardContent>

@@ -1,5 +1,6 @@
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
+import { useAuth } from '../context/authContext'
 import { CurrentMatchCard } from './CurrentMatchCard'
 
 export const Home = () => {
@@ -16,7 +17,6 @@ export const Home = () => {
         setCurrent(data)
       })
   }, [])
-
 
   return (
     <>
