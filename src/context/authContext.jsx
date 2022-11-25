@@ -9,6 +9,7 @@ export const useAuth = () => useContext(authContext)
 export function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     const signup = async (email, password) => {
         await createUserWithEmailAndPassword(auth, email, password)
@@ -23,13 +24,17 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         onAuthStateChanged(auth, current => {
             setUser(current)
+            setLoading(false)
         })
     }, [])
     
 
     return (
         <authContext.Provider value={{ signup, signin, user, logout }}>
-            {children}
+            {
+            !loading &&
+            children
+            }
         </authContext.Provider>
     )
 }

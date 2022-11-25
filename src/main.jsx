@@ -8,6 +8,7 @@ import { Home } from './components/Home';
 import { NavBar } from './components/NavBar';
 import { Partidos } from './components/Partidos';
 import { AuthProvider } from './context/authContext';
+import { StoreProvider } from './context/storeContext';
 
 const darkTheme = createTheme({
   palette: {
@@ -49,10 +50,12 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <AuthProvider>
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <StoreProvider>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </StoreProvider>
   </AuthProvider>
   // </React.StrictMode>
 )

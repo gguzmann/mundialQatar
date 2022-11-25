@@ -17,7 +17,6 @@ export const ModalRegister = ({ handleModal, open, setLogin }) => {
     e.preventDefault()
     try {
       await signup(usuario.email, usuario.password)
-      console.log('register', usuario)
       setLogin(true)
       setUsuario(defaultValues)
     } catch (err) {

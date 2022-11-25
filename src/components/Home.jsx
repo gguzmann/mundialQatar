@@ -1,22 +1,22 @@
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../context/authContext'
+import { useStore } from '../context/storeContext'
 import { CurrentMatchCard } from './CurrentMatchCard'
 
 export const Home = () => {
 
   const [current, setCurrent] = useState([])
+  const { currentMatch, apuestas } = useStore()
+
 
   useEffect(() => {
-    fetch('https://worldcupjson.net/matches/today')
-      .then(response => response.json())
-      .catch(err => err)
-      .then(data => {
-        // setPartidos(data.filter(x => x.id > 3))
-        console.log(data)
-        setCurrent(data)
-      })
-  }, [])
+    setCurrent(currentMatch)
+  }, [currentMatch])
+
+  // console.log(teams)
+  console.log(apuestas)
+  // console.log(matches)
 
   return (
     <>

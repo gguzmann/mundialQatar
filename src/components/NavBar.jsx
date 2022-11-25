@@ -6,7 +6,6 @@ import { LoginContainer } from '../login/LoginContainer'
 
 export const NavBar = () => {
   const { user, logout } = useAuth()
-  console.log(user)
   const navigation = useNavigate()
   return (
     <>
