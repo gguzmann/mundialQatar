@@ -11,7 +11,7 @@ export const ModalLogin = ({ handleModal, open, setLogin }) => {
 
   const [usuario, setUsuario] = useState(defaultValues)
   const [error, setError] = useState('')
-  const { signin } = useAuth()
+  const { signin, loginGoogle } = useAuth()
 
   const handleSubmit = async (e) => {
     try {
@@ -32,6 +32,13 @@ export const ModalLogin = ({ handleModal, open, setLogin }) => {
     })
   }
 
+  const handleGoogle = async () => {
+    try {
+      await loginGoogle()
+    } catch (error) {
+      
+    }
+  }
 
   return (
     <Dialog open={open}
@@ -63,6 +70,9 @@ export const ModalLogin = ({ handleModal, open, setLogin }) => {
           }
           <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
             <Button variant="contained" size="large" type='submit'>Acceder</Button>
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+            <Button variant="contained" color="error" size="large" onClick={handleGoogle} >Google</Button>
           </Box>
         </Box>
       </DialogContent>
