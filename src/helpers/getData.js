@@ -31,8 +31,20 @@ export const getApuestas = async (user) => {
         const queryApuestas = await getDocs(q)
         queryApuestas.forEach((doc) => {
           const obj = doc.data()
-          console.log(doc.data())
           arr.push(obj)
         })
         return arr
+}
+
+export const getAllApuestas = async () => {
+        const collectionApuestas = collection(db, "apuestas")
+        const arr = []
+        const queryApuestas = await getDocs(collectionApuestas)
+        queryApuestas.forEach((doc) => {
+          const obj = doc.data()
+          arr.push(obj)
+        })
+        return arr
+
+
 }

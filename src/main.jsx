@@ -7,6 +7,7 @@ import { Equipos } from './components/Equipos';
 import { Home } from './components/Home';
 import { NavBar } from './components/NavBar';
 import { Partidos } from './components/Partidos';
+import { Ranking } from './components/Ranking';
 import { AuthProvider } from './context/authContext';
 import { StoreProvider } from './context/storeContext';
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter(
         {
           path: "apostar",
           element: <Apostar />
+        },
+        {
+          path: "ranking",
+          element: <Ranking />
         }
 
       ]

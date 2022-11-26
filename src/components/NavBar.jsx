@@ -6,7 +6,11 @@ import { LoginContainer } from '../login/LoginContainer'
 
 export const NavBar = () => {
   const { user, logout } = useAuth()
-  const navigation = useNavigate()
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    navigate('/')
+    logout()
+  }
   return (
     <>
       <AppBar position='static'>
@@ -14,16 +18,16 @@ export const NavBar = () => {
 
           <Toolbar>
             <Typography variant='h6' component='div' sx={{ flexGrow: 10 }}>Copa Mundial Qatar 2022</Typography>
-            <Button color="inherit" onClick={() => navigation('/')} sx={{ flexGrow: 1 }}>Home</Button>
-            <Button color="inherit" onClick={() => navigation('/partidos')} sx={{ flexGrow: 1 }}>Resultados</Button>
-            <Button color="inherit" onClick={() => navigation('/equipos')} sx={{ flexGrow: 1 }}>Fase inicial</Button>
+            <Button color="inherit" onClick={() => navigate('/')} sx={{ flexGrow: 1 }}>Home</Button>
+            <Button color="inherit" onClick={() => navigate('/partidos')} sx={{ flexGrow: 1 }}>Resultados</Button>
+            <Button color="inherit" onClick={() => navigate('/equipos')} sx={{ flexGrow: 1 }}>Fase inicial</Button>
             {
               user ?
                 (
                   <>
-                  <Button color="inherit" onClick={() => navigation('/apostar')} sx={{ flexGrow: 1 }}>Apostar</Button>
-                  <Button color="inherit" onClick={logout} sx={{ flexGrow: 1 }}>Ranking</Button>
-                  <Button color="inherit" onClick={logout} sx={{ flexGrow: 1 }}>{user.email}</Button>
+                  <Button color="inherit" onClick={() => navigate('/apostar')} sx={{ flexGrow: 1 }}>Apostar</Button>
+                  <Button color="inherit" onClick={() => navigate('/ranking')} sx={{ flexGrow: 1 }}>Ranking</Button>
+                  <Button color="inherit" onClick={handleLogout} sx={{ flexGrow: 1 }}>{user.email}</Button>
                   </>
                 )
                 :

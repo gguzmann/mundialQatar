@@ -2,6 +2,7 @@ import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider
 import { collection, doc, setDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { useAuth } from '../context/authContext'
+import { useStore } from '../context/storeContext'
 import { db } from '../firebase'
 
 export const ModalApuesta = ({ open, match, modalApuesta, other, setOther }) => {
@@ -14,6 +15,8 @@ export const ModalApuesta = ({ open, match, modalApuesta, other, setOther }) => 
         name: user.email
     })
 
+
+    const {addApuesta} = useStore()
 
     const hadleChange = (e) => {
         const { value, name } = e.target
@@ -31,9 +34,14 @@ export const ModalApuesta = ({ open, match, modalApuesta, other, setOther }) => 
     const handleApostar = async (e) => {
         e.preventDefault()
         try {
+            if(apuesta.home_goals > apuesta.away_goals) apuesta.winner = match.home_team_country
+            if(apuesta.home_goals < apuesta.away_goals) apuesta.winner = match.away_team_country
+            if(apuesta.home_goals == apuesta.away_goals) apuesta.winner = "Draw"
+
             const collApuesta = collection(db, "apuestas")
             const docRef = doc(collApuesta)
             const newApuesta = await setDoc(docRef, apuesta)
+            addApuesta(apuesta)
             e.target.reset()
             modalApuesta()
             setOther(!other)

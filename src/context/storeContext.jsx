@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAllMatches, getAllTeams, getApuestas, getMatchCurrent } from "../helpers/getData";
+import { getAllApuestas, getAllMatches, getAllTeams, getApuestas, getMatchCurrent } from "../helpers/getData";
 import { useAuth } from "./authContext";
 
 
@@ -11,9 +11,9 @@ export function StoreProvider({ children }) {
 
     const [matches, setMatches] = useState([])
     const [teams, setTeams] = useState([])
-    const [loading, setLoading] = useState(true)
     const [currentMatch, setCurrentMatch] = useState([])
     const [apuestas, setApuestas] = useState([])
+    const [allApuestas, setAllApuestas] = useState([])
 
 
     const { user } = useAuth()
@@ -24,21 +24,28 @@ export function StoreProvider({ children }) {
             getAllMatches(),
             getAllTeams(),
             getMatchCurrent(),
-            getApuestas(user)
+            getApuestas(user),
+            getAllApuestas()
         ])
-            .then(([dataMatches, dataTeams, dataCurrent, dataApuestas]) => {
+            .then(([dataMatches, dataTeams, dataCurrent, dataApuestas, dataAllApuestas]) => {
                 setMatches(dataMatches)
                 const { groups } = dataTeams
                 setTeams(groups)
                 setCurrentMatch(dataCurrent)
                 setApuestas(dataApuestas)
+                setAllApuestas(dataAllApuestas)
             })
-            console.log('store')
+        console.log('store update')
     }, [user])
 
 
+    const addApuesta = (apuesta) => {
+        setApuestas(apuestas => [...apuestas, apuesta])
+        setAllApuestas(allApuestas => [...allApuestas, apuesta])
+    }
+
     return (
-        <storeContext.Provider value={{ matches, teams, currentMatch, apuestas }}>
+        <storeContext.Provider value={{ matches, teams, currentMatch, apuestas, addApuesta, allApuestas }}>
             {children}
         </storeContext.Provider>
     )
