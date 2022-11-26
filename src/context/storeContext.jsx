@@ -25,7 +25,7 @@ export function StoreProvider({ children }) {
             getAllTeams(),
             getMatchCurrent(),
             getApuestas(user),
-            getAllApuestas()
+            getAllApuestas(user)
         ])
             .then(([dataMatches, dataTeams, dataCurrent, dataApuestas, dataAllApuestas]) => {
                 setMatches(dataMatches)

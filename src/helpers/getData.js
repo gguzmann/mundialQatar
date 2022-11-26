@@ -36,7 +36,9 @@ export const getApuestas = async (user) => {
         return arr
 }
 
-export const getAllApuestas = async () => {
+export const getAllApuestas = async (user) => {
+        if(!user) return false
+
         const collectionApuestas = collection(db, "apuestas")
         const arr = []
         const queryApuestas = await getDocs(collectionApuestas)
