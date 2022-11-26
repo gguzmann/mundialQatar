@@ -18,10 +18,12 @@ export const Ranking = () => {
             const userUnique = [...new Set(acierto.map(x => x.name))]
             userUnique.forEach(user => {
                 const arr = acierto.filter(x => x.name == user)
+                const arr2 = arr.filter(x => x.home_goals == matches[x.idMatch - 1].home_team.goals && x.away_goals == matches[x.idMatch - 1].away_team.goals)
                 const obj = {
                     aciertos: arr.length,
                     apuestas: allApuestas.filter(e => e.name == user).length,
-                    name: user
+                    name: user,
+                    aciertoResultado: arr2.length
                 }
                 console.log(obj)
                 setUsers(users => [...users, obj])
@@ -45,6 +47,7 @@ export const Ranking = () => {
                                 <TableCell>Aciertos Win</TableCell>
                                 <TableCell>Aciertos Resultado</TableCell>
                                 <TableCell>No Aciertos</TableCell>
+                                <TableCell>Puntos</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -54,7 +57,9 @@ export const Ranking = () => {
                                     <TableCell>{x.name}</TableCell>
                                     <TableCell>{x.apuestas}</TableCell>
                                     <TableCell>{x.aciertos}</TableCell>
+                                    <TableCell>{x.aciertoResultado}</TableCell>
                                     <TableCell>{x.apuestas - x.aciertos}</TableCell>
+                                    <TableCell>{x.aciertos + x.aciertoResultado}</TableCell>
                                 </TableRow>
                                 )
                             }
