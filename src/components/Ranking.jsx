@@ -33,7 +33,7 @@ export const Ranking = () => {
 
     useEffect(() => {
         generatedRanking()
-    }, [])
+    }, [matches, allApuestas])
 
         return (
         <>
