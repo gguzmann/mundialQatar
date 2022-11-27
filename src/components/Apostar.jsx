@@ -12,8 +12,9 @@ export const Apostar = () => {
   const {matches, apuestas, setApuestas} = useStore()
 
   useEffect(() => {
-    // setPartidos(matches.filter(x => x.id > 14))
-    setPartidos(matches)
+    // setPartidos(matches.filter(x => x.status != "completed"))
+    setPartidos(matches.filter(x => x.id > 20))
+    // setPartidos(matches)
     setBets(apuestas)
   }, [matches, apuestas])
 
