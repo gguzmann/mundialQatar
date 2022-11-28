@@ -42,7 +42,7 @@ export const Ranking = () => {
                     <Table>
                         <TableHead sx={{ backgroundColor: 'rgba(255, 255, 255, .1)' }}>
                             <TableRow>
-                                <TableCell align='center'>Usuario</TableCell>
+                                <TableCell align=''>Usuario</TableCell>
                                 <TableCell align='center'>Apuestas</TableCell>
                                 <TableCell align='center'>Aciertos Win</TableCell>
                                 <TableCell align='center'>Aciertos Resultado</TableCell>
@@ -54,12 +54,12 @@ export const Ranking = () => {
                             {
                                 users.map((x, i) =>
                                     < TableRow key={i}>
-                                        <TableCell align='center' width='40%'>{x.name}</TableCell>
-                                        <TableCell align='center' width='40%'>{x.apuestas}</TableCell>
-                                        <TableCell align='center' width='40%'>{x.aciertos}</TableCell>
-                                        <TableCell align='center' width='40%'>{x.aciertoResultado}</TableCell>
-                                        <TableCell align='center' width='40%'>{x.apuestas - x.aciertos}</TableCell>
-                                        <TableCell align='center' width='40%'>{x.aciertos + x.aciertoResultado}</TableCell>
+                                        <TableCell align='' width='40%'>{x.name}</TableCell>
+                                        <TableCell align='center' width='10%'>{x.apuestas}</TableCell>
+                                        <TableCell align='center' width='10%'>{x.aciertos}</TableCell>
+                                        <TableCell align='center' width='10%'>{x.aciertoResultado}</TableCell>
+                                        <TableCell align='center' width='10%'>{x.apuestas - x.aciertos}</TableCell>
+                                        <TableCell align='center' width='10%'>{x.aciertos + x.aciertoResultado}</TableCell>
                                     </TableRow>
                                 )
                             }

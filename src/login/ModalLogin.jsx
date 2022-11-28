@@ -1,5 +1,6 @@
 import { Alert, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, TextField } from '@mui/material'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
 
 const defaultValues = {
@@ -13,17 +14,20 @@ export const ModalLogin = ({ handleModal, open, setLogin }) => {
   const [error, setError] = useState('')
   const { signin, loginGoogle } = useAuth()
 
+  const navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
       await signin(usuario.email, usuario.password)
       setUsuario(defaultValues)
       handleModal()
+      navigate('/')
     } catch (err) {
       setError(err.code)
     }
   }
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target
     setUsuario({
@@ -31,10 +35,11 @@ export const ModalLogin = ({ handleModal, open, setLogin }) => {
       [name]: value
     })
   }
-
+  
   const handleGoogle = async () => {
     try {
       await loginGoogle()
+      navigate('/')
     } catch (error) {
       
     }
