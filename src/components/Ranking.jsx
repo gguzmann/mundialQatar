@@ -42,7 +42,7 @@ export const Ranking = () => {
                     <Table>
                         <TableHead sx={{ backgroundColor: 'rgba(255, 255, 255, .1)' }}>
                             <TableRow>
-                                <TableCell align=''>Usuario</TableCell>
+                                <TableCell >Usuario</TableCell>
                                 <TableCell align='center'>Apuestas</TableCell>
                                 <TableCell align='center'>Aciertos Win</TableCell>
                                 <TableCell align='center'>Aciertos Resultado</TableCell>
@@ -54,7 +54,7 @@ export const Ranking = () => {
                             {
                                 users.map((x, i) =>
                                     < TableRow key={i}>
-                                        <TableCell align='' width='40%'>{x.name}</TableCell>
+                                        <TableCell  width='40%'>{x.name}</TableCell>
                                         <TableCell align='center' width='10%'>{x.apuestas}</TableCell>
                                         <TableCell align='center' width='10%'>{x.aciertos}</TableCell>
                                         <TableCell align='center' width='10%'>{x.aciertoResultado}</TableCell>
