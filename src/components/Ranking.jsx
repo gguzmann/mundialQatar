@@ -44,8 +44,8 @@ export const Ranking = () => {
                         <TableHead sx={{ backgroundColor: 'rgba(255, 255, 255, .1)' }}>
                             <TableRow>
                                 <TableCell >Usuario</TableCell>
-                                <TableCell align='center'>Apuestas</TableCell>
                                 <TableCell align='center'>Puntos</TableCell>
+                                <TableCell align='center'>Apuestas</TableCell>
                                 <TableCell align='center'>Aciertos Resultado</TableCell>
                                 <TableCell align='center'>Aciertos Win</TableCell>
                             </TableRow>

@@ -37,7 +37,7 @@ export const NavBar = () => {
                 <>
                   <Button color="inherit" onClick={() => navigate('/')} sx={{ flexGrow: 1 }}>Home</Button>
                   <Button color="inherit" onClick={() => navigate('/partidos')} sx={{ flexGrow: 1 }}>Resultados</Button>
-                  <Button color="inherit" onClick={() => navigate('/equipos')} sx={{ flexGrow: 1 }}>Fase inicial</Button>
+                  <Button color="inherit" onClick={() => navigate('/equipos')} sx={{ flexGrow: 1 }}>Grupos</Button>
                   {
                     user ?
 
@@ -77,7 +77,7 @@ export const NavBar = () => {
           <List sx={{ width: 300 }} onClick={handleMenu}>
             <ListItem><Button color="inherit" onClick={() => navigate('/')} sx={{ flexGrow: 1 }}>Home</Button></ListItem>
             <ListItem><Button color="inherit" onClick={() => navigate('/partidos')} sx={{ flexGrow: 1 }}>Resultados</Button></ListItem>
-            <ListItem><Button color="inherit" onClick={() => navigate('/equipos')} sx={{ flexGrow: 1 }}>Fase inicial</Button></ListItem>
+            <ListItem><Button color="inherit" onClick={() => navigate('/equipos')} sx={{ flexGrow: 1 }}>Grupos</Button></ListItem>
             {
               user ?
                 (

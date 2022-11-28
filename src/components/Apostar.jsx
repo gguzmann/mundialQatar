@@ -35,12 +35,14 @@ export const Apostar = () => {
     if(e.target.value == 3) setPartidos(matches.filter(x => x.stage_name == "Quarter-final"))
     if(e.target.value == 4) setPartidos(matches.filter(x => x.stage_name == "Semi-final"))
     if(e.target.value == 5) setPartidos(matches.filter(x => x.stage_name == "Final"))
+    if(e.target.value == 6) setPartidos(matches.filter(x => new Date(x.datetime).getDate() == new Date().getDate()))
   }
 
   return (
     <Box sx={{m:3}}>
-      <Select onChange={handleChange} value={select} sx={{ m : 3, width: '25%' }}>
+      <Select onChange={handleChange} value={select} sx={{ m : 3, width: '50%' }}>
         <MenuItem value={0}>Todos</MenuItem>
+        <MenuItem value={6}>Hoy</MenuItem>
         <MenuItem value={1}>Fase inicial</MenuItem>
         <MenuItem value={2}>Octavos</MenuItem>
         <MenuItem value={3}>Cuartos</MenuItem>
