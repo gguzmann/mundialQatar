@@ -9,8 +9,8 @@ export const Apostar = () => {
   const [other, setOther] = useState(false)
   const [bets, setBets] = useState([])
 
-  const {matches, apuestas, setApuestas} = useStore()
-
+  const {matches, apuestas} = useStore()
+  console.log(new Date())
   useEffect(() => {
     // setPartidos(matches.filter(x => x.status != "completed"))
     setPartidos(matches.filter(x => x.id > 20))
@@ -21,7 +21,7 @@ export const Apostar = () => {
   
 
   return (
-    <Box sx={{mx: '15%', mt: 5}}>
+    <Box sx={{  }}>
       {
         apuestas &&
         partidos.map((match, i) => <MatchApuesta key={i} match={match} apuestas={bets.find(x => x.idMatch == match.id)} setOther={setOther} other={other}/>)

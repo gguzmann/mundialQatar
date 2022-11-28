@@ -11,8 +11,8 @@ export const Match = ({ match }) => {
 
     return (
         <>
-            <Paper sx={{ display: 'flex', m: 2, p: 2 }}>
-                <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+            <Paper sx={{ display: 'flex', m: 2, p: 2, maxWidth: '100%' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent:'center' ,  width: '25%' }}>
                     <Box>
                         <div>{dia}</div>
 
@@ -41,7 +41,7 @@ export const Match = ({ match }) => {
 
                     </Box>
                 </Box>
-                <Box sx={{ flexGrow: 10 }}>
+                <Box sx={{ width: '80%' }}>
 
                     <Box sx={{ textAlign: 'center', p: 2, mb: 1, display: 'flex', alignItems: 'center' }}>
                         <img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${match.home_team.name.split(' ').join('_')}.jpg`} width="50" height='50' />

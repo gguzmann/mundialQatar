@@ -14,7 +14,15 @@ export function StoreProvider({ children }) {
     const [currentMatch, setCurrentMatch] = useState([])
     const [apuestas, setApuestas] = useState([])
     const [allApuestas, setAllApuestas] = useState([])
+    // const [width, setWidth] = useState(window.innerWidth)
 
+    // const handleWindowSizeChange = () => {
+    //     setWidth(window.innerWidth);
+    // }
+
+    // useEffect(() => {
+    //     window.addEventListener('resize', handleWindowSizeChange);
+    // }, []);
 
     const { user } = useAuth()
 

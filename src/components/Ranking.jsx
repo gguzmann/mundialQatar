@@ -37,29 +37,29 @@ export const Ranking = () => {
 
         return (
         <>
-            <Box sx={{ mx: '15%' }}>
-                <TableContainer>
+            <Box sx={{ m: 3 }}>
+                <TableContainer sx={{maxWidth: '100%'}}>
                     <Table>
-                        <TableHead>
+                    <TableHead sx={{backgroundColor: 'rgba(255, 255, 255, .1)'}}>
                             <TableRow>
-                                <TableCell>Usuario</TableCell>
-                                <TableCell>Apuestas</TableCell>
-                                <TableCell>Aciertos Win</TableCell>
-                                <TableCell>Aciertos Resultado</TableCell>
-                                <TableCell>No Aciertos</TableCell>
-                                <TableCell>Puntos</TableCell>
+                                <TableCell align='center'>Usuario</TableCell>
+                                <TableCell align='center'>Apuestas</TableCell>
+                                <TableCell align='center'>Aciertos Win</TableCell>
+                                <TableCell align='center'>Aciertos Resultado</TableCell>
+                                <TableCell align='center'>No Aciertos</TableCell>
+                                <TableCell align='center'>Puntos</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {
                                 users.map((x, i) => 
                                 < TableRow key={i}>
-                                    <TableCell>{x.name}</TableCell>
-                                    <TableCell>{x.apuestas}</TableCell>
-                                    <TableCell>{x.aciertos}</TableCell>
-                                    <TableCell>{x.aciertoResultado}</TableCell>
-                                    <TableCell>{x.apuestas - x.aciertos}</TableCell>
-                                    <TableCell>{x.aciertos + x.aciertoResultado}</TableCell>
+                                    <TableCell align='center' width='40%'>{x.name}</TableCell>
+                                    <TableCell align='center' width='40%'>{x.apuestas}</TableCell>
+                                    <TableCell align='center' width='40%'>{x.aciertos}</TableCell>
+                                    <TableCell align='center' width='40%'>{x.aciertoResultado}</TableCell>
+                                    <TableCell align='center' width='40%'>{x.apuestas - x.aciertos}</TableCell>
+                                    <TableCell align='center' width='40%'>{x.aciertos + x.aciertoResultado}</TableCell>
                                 </TableRow>
                                 )
                             }
@@ -67,6 +67,7 @@ export const Ranking = () => {
                 </Table>
             </TableContainer>
         </Box>
+
 
         </>
     )

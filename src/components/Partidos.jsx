@@ -16,7 +16,7 @@ export const Partidos = () => {
   }, [matches])
 
   return (
-    <Box sx={{ mx: '15%' }}>
+    <Box sx={{  }}>
       {
         partidos.map((match, i) => <Match key={i} match={match} />)
       }

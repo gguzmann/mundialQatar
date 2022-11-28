@@ -2,10 +2,12 @@ import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import React from 'react'
 
 export const GruposCard = ({ group }) => {
+    let teams = group.teams.map(x => x)
+    console.log(teams.sort((a, b) => a.group_points < b.group_points))
     return (
         <>
         Grupo {group.letter}
-            <TableContainer sx={{m: 2, maxWidth: '100%', border: 1, borderColor: 'divider'}} >
+            <TableContainer sx={{m: 2, maxWidth: '90%', border: 1, borderColor: 'divider'}} >
                 <Table >
                     <TableHead sx={{backgroundColor: 'rgba(255, 255, 255, .1)'}}>
                         <TableRow>
@@ -17,12 +19,12 @@ export const GruposCard = ({ group }) => {
                     </TableHead>
                     <TableBody>
                         {
-                            group.teams.map((x, i) => (
+                            group.teams.sort((a, b) => a.group_points < b.group_points).map((x, i) => (
                                 <TableRow key={i} hover>
-                                    <TableCell><img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${x.name.split(' ').join('_')}.jpg`} width="20" height='20' /> {x.name}</TableCell>
-                                    <TableCell>{x.group_points}</TableCell>
-                                    <TableCell>{x.games_played}</TableCell>
-                                    <TableCell>{x.goal_differential}</TableCell>
+                                    <TableCell width='40%'><img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${x.name.split(' ').join('_')}.jpg`} width="20" height='20' /> {x.name}</TableCell>
+                                    <TableCell width='20%'>{x.group_points}</TableCell>
+                                    <TableCell width='20%'>{x.games_played}</TableCell>
+                                    <TableCell width='20%'>{x.goal_differential}</TableCell>
                                 </TableRow>
 
                             ))

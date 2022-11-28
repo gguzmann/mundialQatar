@@ -12,7 +12,7 @@ const [grupos, setGrupos] = useState([])
 }, [teams])
 
 return (
-  <Box sx={{ mx: 20 }}>
+  <Box sx={{ }}>
     {
       teams.map((x, i) => <GruposCard key={i} group={x} />)
       // grupos.map(x => console.log())

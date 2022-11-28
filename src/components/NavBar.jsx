@@ -2,6 +2,7 @@ import { AppBar, Box, Button, Dialog, DialogActions, DialogContent, DialogConten
 import React, { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
+import { useStore } from '../context/storeContext'
 import { LoginContainer } from '../login/LoginContainer'
 
 export const NavBar = () => {
@@ -11,6 +12,7 @@ export const NavBar = () => {
     navigate('/')
     logout()
   }
+  const { width } = useStore()
   return (
     <>
       <AppBar position='static'>
@@ -25,9 +27,9 @@ export const NavBar = () => {
               user ?
                 (
                   <>
-                  <Button color="inherit" onClick={() => navigate('/apostar')} sx={{ flexGrow: 1 }}>Apostar</Button>
-                  <Button color="inherit" onClick={() => navigate('/ranking')} sx={{ flexGrow: 1 }}>Ranking</Button>
-                  <Button color="inherit" onClick={handleLogout} sx={{ flexGrow: 1 }}>{user.email}</Button>
+                    <Button color="inherit" onClick={() => navigate('/apostar')} sx={{ flexGrow: 1 }}>Apostar</Button>
+                    <Button color="inherit" onClick={() => navigate('/ranking')} sx={{ flexGrow: 1 }}>Ranking</Button>
+                    <Button color="inherit" onClick={handleLogout} sx={{ flexGrow: 1 }}>{user.email}</Button>
                   </>
                 )
                 :
