@@ -41,8 +41,8 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
     const handleApostar = async (e) => {
         e.preventDefault()
         setApuesta({ ...apuesta, id: match.id })
-        // if(apuesta.winner == match.home_team.name && apuesta.home_goals < apuesta.away_goals) {setError('Resultado Imposible'); return false}
-        // if(apuesta.winner == match.away_team.name && apuesta.away_goals < apuesta.home_goals) {setError('Resultado Imposible'); return false}
+        if(apuesta.winner == match.home_team.name && apuesta.home_goals < apuesta.away_goals) {setError('Resultado Imposible'); return false}
+        if(apuesta.winner == match.away_team.name && apuesta.away_goals < apuesta.home_goals) {setError('Resultado Imposible'); return false}
         try {
 
             const collApuesta = collection(db, "apuestas")

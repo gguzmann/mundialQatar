@@ -40,7 +40,7 @@ export const Apostar = () => {
 
   return (
     <Box sx={{m:3}}>
-      <Select onChange={handleChange} value={select} sx={{ m : 3, width: '50%' }}>
+      <Select onChange={handleChange} value={select} sx={{ m : 3, width: '50%', maxWidth: '300px' }}>
         <MenuItem value={0}>Todos</MenuItem>
         <MenuItem value={6}>Hoy</MenuItem>
         <MenuItem value={1}>Fase inicial</MenuItem>

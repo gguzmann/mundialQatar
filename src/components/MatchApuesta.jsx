@@ -62,18 +62,18 @@ export const MatchApuesta = ({ match, apuestas }) => {
                                         <Button variant='outlined' color={colorGoalsAway != '' ? colorGoalsAway : 'primary'} sx={{ p: 1, fontSize: 20 }}>{apuesta.away_goals}</Button>
                                     </>
                                     :
-                                    <Button onClick={modalApuesta} variant="contained" color="success">Apostar</Button>
+                                    // <Button onClick={modalApuesta} variant="contained" color="success">Apostar</Button>
 
-                                // new Date(match.datetime) > new Date() ?
-                                //     <>
+                                new Date(match.datetime) > new Date() ?
+                                    <>
 
-                                //         <Button onClick={modalApuesta} variant="contained" color="success">Apostar</Button>
-                                //     </>
-                                //     :
-                                //     <>
+                                        <Button onClick={modalApuesta} variant="contained" color="success">Apostar</Button>
+                                    </>
+                                    :
+                                    <>
 
-                                //         <Button variant="outlined" color="error">Finalizado</Button>
-                                //     </>
+                                        <Button variant="outlined" color="error">Finalizado</Button>
+                                    </>
                             }
                         </Box>
                         {
