@@ -1,7 +1,11 @@
-import { Box, Card, CardContent, LinearProgress, Typography } from '@mui/material'
+import { useTheme } from '@emotion/react'
+import { Box, Card, CardContent, LinearProgress, Typography, useMediaQuery } from '@mui/material'
 import React from 'react'
 
 export const CurrentMatchCard = ({ match }) => {
+
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
     const fecha = new Date(match.datetime)
     const fechaProgress = new Date(match.datetime)
@@ -12,7 +16,7 @@ export const CurrentMatchCard = ({ match }) => {
     // console.log((hoy - fecha)/60)
 
     return (
-        <Card key={match.id} sx={{ width: '25%' }}>
+        <Card key={match.id} sx={{ width: isMobile ? '100%' : '25%', m: 1 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     {
