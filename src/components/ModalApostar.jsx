@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogTitle, Divider, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Dialog, DialogActions, DialogTitle, Divider, TextField, Typography } from '@mui/material'
 import { collection, doc, setDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { useAuth } from '../context/authContext'
@@ -10,14 +10,14 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
     const { user } = useAuth()
     const { addApuesta } = useStore()
 
-    const defaultStateApuesta = {
-        idMatch: match.id,
+    const [error, setError] = useState(null)
+    const [apuesta, setApuesta] = useState({
+        id: match.id,
         winner: null,
         home_goals: null,
         away_goals: null,
         name: user.email
-    }
-    const [apuesta, setApuesta] = useState(defaultStateApuesta)
+    })
 
     const handleWinner = (team) => {
         setApuesta({ ...apuesta, winner: team })
@@ -25,6 +25,7 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
     }
 
     const hadleChange = (e) => {
+        console.log(apuesta.id)
         const { value, name } = e.target
         if (!/^\d+$/.test(value)) {
             e.target.value = null
@@ -39,6 +40,9 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
 
     const handleApostar = async (e) => {
         e.preventDefault()
+        setApuesta({ ...apuesta, id: match.id })
+        // if(apuesta.winner == match.home_team.name && apuesta.home_goals < apuesta.away_goals) {setError('Resultado Imposible'); return false}
+        // if(apuesta.winner == match.away_team.name && apuesta.away_goals < apuesta.home_goals) {setError('Resultado Imposible'); return false}
         try {
 
             const collApuesta = collection(db, "apuestas")
@@ -47,6 +51,7 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
             addApuesta(apuesta)
             e.target.reset()
             modalApuesta()
+            console.log(apuesta)
             // setOther(!other)
         } catch (error) {
             console.log(error)
@@ -58,7 +63,7 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
             open={open}
             onClose={modalApuesta}
         >
-            <Box sx={{ p: 3 }} component="form" onSubmit={handleApostar}>
+            <Box sx={{ p: 3 }} component="form" onSubmit={handleApostar} autoComplete='off'>
 
                 <DialogTitle sx={{ textAlign: 'center' }}>
                     {match.home_team.name} vs {match.away_team.name}
@@ -85,6 +90,10 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
                             <TextField sx={{ width: 50 }} id="outlined-basic" variant="outlined" name="away_goals" inputProps={{ maxLength: 1 }} required onChange={hadleChange} />
                         </Box>
                     </>
+                }
+                {
+                    error &&
+                    <Alert color="error" sx={{m:2}}>{error}</Alert>
                 }
                 {
                     apuesta.home_goals && apuesta.away_goals && apuesta.home_goals != '' && apuesta.away_goals != '' &&

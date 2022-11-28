@@ -6,32 +6,39 @@ import { MatchApuesta } from './MatchApuesta'
 export const Apostar = () => {
 
   const [partidos, setPartidos] = useState([])
-  const [other, setOther] = useState(false)
   const [bets, setBets] = useState([])
 
-  const [select, setSelect] = useState(0)
+  const [select, setSelect] = useState(0  )
 
   const {matches, apuestas} = useStore()
   console.log(new Date())
   useEffect(() => {
-    // setPartidos(matches.filter(x => x.status != "completed"))
-    setPartidos(matches.filter(x => x.id > 20))
-    // setPartidos(matches)
+    // setPartidos(matches.filter(x => x.id > 50))
     setBets(apuestas)
-  }, [matches, apuestas])
+  }, [apuestas])
+  
+  useEffect(() => {
+    if(select == 0) setPartidos(matches)
+    if(select == 1) setPartidos(matches.filter(x => x.stage_name == "First stage"))
+    if(select == 2) setPartidos(matches.filter(x => x.stage_name == "Round of 16"))
+    if(select == 3) setPartidos(matches.filter(x => x.stage_name == "Quarter-final"))
+    if(select == 4) setPartidos(matches.filter(x => x.stage_name == "Semi-final"))
+    if(select == 5) setPartidos(matches.filter(x => x.stage_name == "Final"))
+
+  }, [matches])
 
   const handleChange = (e) => {
     setSelect(e.target.value)
     if(e.target.value == 0) setPartidos(matches)
-    if(e.target.value == 1) setPartidos(matches.filter(x => x.stage_name === "First stage"))
-    if(e.target.value == 2) setPartidos(matches.filter(x => x.stage_name === "Round of 16"))
-    if(e.target.value == 3) setPartidos(matches.filter(x => x.stage_name === "Quarter-final"))
-    if(e.target.value == 4) setPartidos(matches.filter(x => x.stage_name === "Semi-final"))
-    if(e.target.value == 5) setPartidos(matches.filter(x => x.stage_name === "Final"))
+    if(e.target.value == 1) setPartidos(matches.filter(x => x.stage_name == "First stage"))
+    if(e.target.value == 2) setPartidos(matches.filter(x => x.stage_name == "Round of 16"))
+    if(e.target.value == 3) setPartidos(matches.filter(x => x.stage_name == "Quarter-final"))
+    if(e.target.value == 4) setPartidos(matches.filter(x => x.stage_name == "Semi-final"))
+    if(e.target.value == 5) setPartidos(matches.filter(x => x.stage_name == "Final"))
   }
 
   return (
-    <Box >
+    <Box sx={{m:3}}>
       <Select onChange={handleChange} value={select} sx={{ m : 3, width: '25%' }}>
         <MenuItem value={0}>Todos</MenuItem>
         <MenuItem value={1}>Fase inicial</MenuItem>
@@ -42,7 +49,7 @@ export const Apostar = () => {
       </Select>
       {
         apuestas &&
-        partidos.map((match, i) => <MatchApuesta key={i} match={match} apuestas={bets.find(x => x.idMatch == match.id)} setOther={setOther} other={other}/>)
+        partidos.map((match, i) => <MatchApuesta key={match.id} match={match} apuestas={bets.find(x => x.id == match.id)}/>)
       }
     </Box>
   )
