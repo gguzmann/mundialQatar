@@ -3,7 +3,6 @@ import React from 'react'
 
 export const GruposCard = ({ group }) => {
     let teams = group.teams.map(x => x)
-    console.log(teams.sort((a, b) => a.group_points < b.group_points))
     return (
         <>
         Grupo {group.letter}

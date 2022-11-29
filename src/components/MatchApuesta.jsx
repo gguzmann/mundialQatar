@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, Paper, TextField, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Button, Paper, TextField, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../context/authContext'
 import { ModalApostar } from './ModalApostar'
@@ -39,14 +39,14 @@ export const MatchApuesta = ({ match, apuestas }) => {
                         {
                             apuesta &&
                             <>
-                                win: {apuesta.winner} 
+                                win: {apuesta.winner}
                             </>
                         }
                     </Box>
                     <Box sx={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
                         <Box sx={{ width: '20%' }}>
 
-                            <img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${match.home_team.name.split(' ').join('_')}.jpg`} width="50" height='50' />
+                            <img src={match.home_team_country ? `https://www.sciencekids.co.nz/images/pictures/flags96/${match.home_team.name.split(' ').join('_')}.jpg` : 'https://bolt-gcdn.sc-cdn.net/3/hxTBED1t41k8SBqUgBNOq?bo=EhgaABoAMgF9OgEEQgYInJjWhgZIAlASYAE%3D&uc=18'} width="50" height='50' />
                         </Box>
                         {
                             !isMobile &&
@@ -64,16 +64,16 @@ export const MatchApuesta = ({ match, apuestas }) => {
                                     :
                                     // <Button onClick={modalApuesta} variant="contained" color="success">Apostar</Button>
 
-                                new Date(match.datetime) > new Date() ?
-                                    <>
+                                    new Date(match.datetime) > new Date() ?
+                                        !match.home_team_country && !match.home_team_country ?
+                                            <Button variant="outlined" color="primary">Undefined</Button>
+                                            :
+                                            <Button onClick={modalApuesta} variant="contained" color="success">Apostar</Button>
+                                        :
+                                        <>
 
-                                        <Button onClick={modalApuesta} variant="contained" color="success">Apostar</Button>
-                                    </>
-                                    :
-                                    <>
-
-                                        <Button variant="outlined" color="error">Finalizado</Button>
-                                    </>
+                                            <Button variant="outlined" color="error">Finalizado</Button>
+                                        </>
                             }
                         </Box>
                         {
@@ -84,7 +84,7 @@ export const MatchApuesta = ({ match, apuestas }) => {
                         }
                         <Box sx={{ width: '20%' }}>
 
-                            <img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${match.away_team.name.split(' ').join('_')}.jpg`} width="50" height='50' />
+                            <img src={match.away_team_country ? `https://www.sciencekids.co.nz/images/pictures/flags96/${match.away_team.name.split(' ').join('_')}.jpg` : 'https://bolt-gcdn.sc-cdn.net/3/hxTBED1t41k8SBqUgBNOq?bo=EhgaABoAMgF9OgEEQgYInJjWhgZIAlASYAE%3D&uc=18'} width="50" height='50' />
                         </Box>
                     </Box>
                 </Box>

@@ -36,7 +36,7 @@ export const NavBar = () => {
               !isMobile ?
                 <>
                   <Button color="inherit" onClick={() => navigate('/')} sx={{ flexGrow: 1 }}>Home</Button>
-                  <Button color="inherit" onClick={() => navigate('/partidos')} sx={{ flexGrow: 1 }}>Resultados</Button>
+                  <Button color="inherit" onClick={() => navigate('/partidos')} sx={{ flexGrow: 1 }}>Partidos</Button>
                   <Button color="inherit" onClick={() => navigate('/equipos')} sx={{ flexGrow: 1 }}>Grupos</Button>
                   {
                     user ?
@@ -44,7 +44,7 @@ export const NavBar = () => {
                       <>
                         <Button color="inherit" onClick={() => navigate('/apostar')} sx={{ flexGrow: 1 }}>Apostar</Button>
                         <Button color="inherit" onClick={() => navigate('/ranking')} sx={{ flexGrow: 1 }}>Ranking</Button>
-                        <Button color="inherit" onClick={handleLogout} sx={{ flexGrow: 1 }}>{user.email}</Button>
+                        <Button color="inherit" onClick={handleLogout} sx={{ flexGrow: 1 }}>Cerrar Sesion</Button>
                       </>
 
                       :
@@ -76,7 +76,7 @@ export const NavBar = () => {
         >
           <List sx={{ width: 300 }} onClick={handleMenu}>
             <ListItem><Button color="inherit" onClick={() => navigate('/')} sx={{ flexGrow: 1 }}>Home</Button></ListItem>
-            <ListItem><Button color="inherit" onClick={() => navigate('/partidos')} sx={{ flexGrow: 1 }}>Resultados</Button></ListItem>
+            <ListItem><Button color="inherit" onClick={() => navigate('/partidos')} sx={{ flexGrow: 1 }}>Partidos</Button></ListItem>
             <ListItem><Button color="inherit" onClick={() => navigate('/equipos')} sx={{ flexGrow: 1 }}>Grupos</Button></ListItem>
             {
               user ?
@@ -84,7 +84,7 @@ export const NavBar = () => {
                   <>
                     <ListItem><Button color="inherit" onClick={() => navigate('/apostar')} sx={{ flexGrow: 1 }}>Apostar</Button></ListItem>
                     <ListItem><Button color="inherit" onClick={() => navigate('/ranking')} sx={{ flexGrow: 1 }}>Ranking</Button></ListItem>
-                    <ListItem><Button color="inherit" onClick={handleLogout} sx={{ flexGrow: 1 }}>{user.email.split('@')[0]}</Button></ListItem>
+                    <ListItem><Button color="inherit" onClick={handleLogout} sx={{ flexGrow: 1 }}>Cerrar Sesion</Button></ListItem>
                   </>
                 )
                 :

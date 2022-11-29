@@ -11,7 +11,6 @@ export const Apostar = () => {
   const [select, setSelect] = useState(0  )
 
   const {matches, apuestas} = useStore()
-  console.log(new Date())
   useEffect(() => {
     // setPartidos(matches.filter(x => x.id > 50))
     setBets(apuestas)

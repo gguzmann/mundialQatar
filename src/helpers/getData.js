@@ -47,6 +47,15 @@ export const getAllApuestas = async (user) => {
           arr.push(obj)
         })
         return arr
-
-
 }
+
+export const validarUsuario = async (email) => {
+        const collectionParticipantes = collection(db, "participantes")
+        const q = query(collectionParticipantes, where("user", "==", email))
+
+        const arr = []
+        const queryParticipantes = await getDocs(q)
+        queryParticipantes.forEach(x => arr.push(x.data()))
+         
+        return arr.length > 0 ? true : false
+} 

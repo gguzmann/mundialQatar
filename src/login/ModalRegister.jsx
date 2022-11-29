@@ -1,6 +1,7 @@
 import { Box, Dialog, Button, DialogActions, DialogContent, DialogTitle, Divider, TextField, Alert } from '@mui/material'
 import React, { useState } from 'react'
 import { useAuth } from '../context/authContext'
+import { validarUsuario } from '../helpers/getData'
 
 const defaultValues = {
   email: '',
@@ -11,14 +12,18 @@ export const ModalRegister = ({ handleModal, open, setLogin }) => {
   const [usuario, setUsuario] = useState(defaultValues)
   const [error, setError] = useState('')
 
-  const {signup} = useAuth()
+  const { signup } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await signup(usuario.email, usuario.password)
-      setLogin(true)
-      setUsuario(defaultValues)
+      if (await validarUsuario(usuario.email)) {
+        await signup(usuario.email, usuario.password)
+        setLogin(true)
+        setUsuario(defaultValues)
+      } else {
+        setError("No tienes invitacion")
+      }
     } catch (err) {
       setError(err.code)
     }
@@ -69,9 +74,8 @@ export const ModalRegister = ({ handleModal, open, setLogin }) => {
       </DialogContent>
       <Divider />
       <DialogActions>
-        <Button onClick={() => {setLogin(true)}}>Login</Button>
-        </DialogActions> 
-      </Dialog>
+        <Button onClick={() => { setLogin(true) }}>Login</Button>
+      </DialogActions>
+    </Dialog>
   )
 }
- 

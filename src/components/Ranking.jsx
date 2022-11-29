@@ -39,7 +39,7 @@ export const Ranking = () => {
     return (
         <>
             <Box sx={{ m: 3 }}>
-                <TableContainer sx={{ maxWidth: '100%' }}>
+                <TableContainer sx={{ width: '100%' }}>
                     <Table>
                         <TableHead sx={{ backgroundColor: 'rgba(255, 255, 255, .1)' }}>
                             <TableRow>
@@ -54,7 +54,7 @@ export const Ranking = () => {
                             {
                                 users.map((x, i) =>
                                     < TableRow key={i}>
-                                        <TableCell  width='50%'>{x.name}</TableCell>
+                                        <TableCell  width='10%'>{x.name}</TableCell>
                                         <TableCell align='center' width='10%'>{x.aciertos + x.aciertoResultado}</TableCell>
                                         <TableCell align='center' width='10%'>{x.apuestas}</TableCell>
                                         <TableCell align='center' width='10%'>{x.aciertos}</TableCell>

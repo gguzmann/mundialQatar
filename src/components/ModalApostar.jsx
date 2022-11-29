@@ -21,11 +21,9 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
 
     const handleWinner = (team) => {
         setApuesta({ ...apuesta, winner: team })
-        console.log(apuesta)
     }
 
     const hadleChange = (e) => {
-        console.log(apuesta.id)
         const { value, name } = e.target
         if (!/^\d+$/.test(value)) {
             e.target.value = null
@@ -51,7 +49,6 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
             addApuesta(apuesta)
             e.target.reset()
             modalApuesta()
-            console.log(apuesta)
             // setOther(!other)
         } catch (error) {
             console.log(error)

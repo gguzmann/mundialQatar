@@ -2,6 +2,7 @@ import { Alert, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, 
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
+import { validarUsuario } from '../helpers/getData'
 
 const defaultValues = {
   email: '',
@@ -12,22 +13,26 @@ export const ModalLogin = ({ handleModal, open, setLogin }) => {
 
   const [usuario, setUsuario] = useState(defaultValues)
   const [error, setError] = useState('')
-  const { signin, loginGoogle } = useAuth()
+  const { signin, loginGoogle, logout } = useAuth()
 
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
-      await signin(usuario.email, usuario.password)
-      setUsuario(defaultValues)
-      handleModal()
-      navigate('/')
+      if(await validarUsuario(usuario.email)){
+        await signin(usuario.email, usuario.password)
+        setUsuario(defaultValues)
+        handleModal()
+        navigate('/')
+      }else{
+        setError("No tienes invitacion")
+      }
     } catch (err) {
       setError(err.code)
     }
   }
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setUsuario({
@@ -35,13 +40,18 @@ export const ModalLogin = ({ handleModal, open, setLogin }) => {
       [name]: value
     })
   }
-  
+
   const handleGoogle = async () => {
     try {
-      await loginGoogle()
-      navigate('/')
+      const login = await loginGoogle()
+      validarUsuario(login.user.email).then(x => {
+        if (!x) {
+          logout()
+          navigate('/')
+        }
+      })
     } catch (error) {
-      
+
     }
   }
 
