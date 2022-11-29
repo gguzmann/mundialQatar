@@ -20,14 +20,14 @@ export const ModalLogin = ({ handleModal, open, setLogin }) => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
-      if(await validarUsuario(usuario.email)){
+      // if(await validarUsuario(usuario.email)){
         await signin(usuario.email, usuario.password)
         setUsuario(defaultValues)
         handleModal()
         navigate('/')
-      }else{
-        setError("No tienes invitacion")
-      }
+      // }else{
+      //   setError("No tienes invitacion")
+      // }
     } catch (err) {
       setError(err.code)
     }
@@ -44,12 +44,12 @@ export const ModalLogin = ({ handleModal, open, setLogin }) => {
   const handleGoogle = async () => {
     try {
       const login = await loginGoogle()
-      validarUsuario(login.user.email).then(x => {
-        if (!x) {
-          logout()
+      // validarUsuario(login.user.email).then(x => {
+      //   if (!x) {
+      //     logout()
           navigate('/')
-        }
-      })
+      //   }
+      // })
     } catch (error) {
 
     }

@@ -17,13 +17,13 @@ export const ModalRegister = ({ handleModal, open, setLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      if (await validarUsuario(usuario.email)) {
+      // if (await validarUsuario(usuario.email)) {
         await signup(usuario.email, usuario.password)
         setLogin(true)
         setUsuario(defaultValues)
-      } else {
-        setError("No tienes invitacion")
-      }
+      // } else {
+      //   setError("No tienes invitacion")
+      // }
     } catch (err) {
       setError(err.code)
     }
