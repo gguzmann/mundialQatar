@@ -1,22 +1,15 @@
-import { Alert, Box, Button, Dialog, DialogActions, DialogTitle, Divider, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Dialog, DialogActions, DialogTitle, Divider, IconButton, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useAuth } from '../context/authContext'
 import { useStore } from '../context/storeContext'
 import { newApuesta } from '../helpers/getData'
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 
-export const ModalApostar = ({ open, modalApuesta, match }) => {
+export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, error, setError }) => {
 
-    const { user } = useAuth()
     const { addApuesta } = useStore()
 
-    const [error, setError] = useState(null)
-    const [apuesta, setApuesta] = useState({
-        id: match.id,
-        winner: null,
-        home_goals: null,
-        away_goals: null,
-        name: user.email
-    })
+
 
     const handleWinner = (team) => {
         setApuesta({ ...apuesta, winner: team })
@@ -26,11 +19,17 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
         const { value, name } = e.target
         if (!/^\d+$/.test(value)) {
             e.target.value = null
+            setApuesta({
+                ...apuesta,
+                [name]: null
+            })
         } else {
             setApuesta({
                 ...apuesta,
                 [name]: value
             })
+            console.log(apuesta)
+
             // e.target.form[2].focus()
         }
     }
@@ -38,10 +37,11 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
     const handleApostar = async (e) => {
         e.preventDefault()
         setApuesta({ ...apuesta, id: match.id })
-        if(apuesta.winner == match.home_team.name && apuesta.home_goals < apuesta.away_goals) {setError('Resultado Imposible'); return false}
-        if(apuesta.winner == match.away_team.name && apuesta.away_goals < apuesta.home_goals) {setError('Resultado Imposible'); return false}
+        if (apuesta.winner == match.home_team.name && apuesta.home_goals < apuesta.away_goals) { setError('Resultado Imposible'); return false }
+        if (apuesta.winner == match.away_team.name && apuesta.away_goals < apuesta.home_goals) { setError('Resultado Imposible'); return false }
+        console.log('apuesta:', apuesta.winner, 'resultado:', apuesta.home_goals, apuesta.away_goals)
         try {
-            newApuesta(apuesta, match.home_team_country + '_' + match.away_team_country + '_' + apuesta.name.split('@')[0] )
+            newApuesta(apuesta, match.home_team_country + '_' + match.away_team_country + '_' + apuesta.name.split('@')[0])
 
             addApuesta(apuesta)
             e.target.reset()
@@ -83,11 +83,20 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
                             vs
                             <TextField sx={{ width: 50 }} id="outlined-basic" variant="outlined" name="away_goals" inputProps={{ maxLength: 1 }} required onChange={hadleChange} />
                         </Box>
+
+                        <Typography sx={{ textAlign: 'center', m: 1 }}>Cantidad de goles:</Typography>
+                        <Box sx={{ display: 'flex', mx: 1, justifyContent: 'center', alignItems: 'center' }}>
+
+                            <IconButton>
+                                <SportsSoccerIcon />
+                            </IconButton>
+                            {Number(apuesta.home_goals) + Number(apuesta.away_goals)}
+                        </Box>
                     </>
                 }
                 {
                     error &&
-                    <Alert color="error" sx={{m:2}}>{error}</Alert>
+                    <Alert color="error" sx={{ m: 2 }}>{error}</Alert>
                 }
                 {
                     apuesta.home_goals && apuesta.away_goals && apuesta.home_goals != '' && apuesta.away_goals != '' &&

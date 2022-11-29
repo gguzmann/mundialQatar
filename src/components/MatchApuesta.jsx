@@ -7,9 +7,29 @@ import { ModalApuesta } from './ModalApuesta'
 export const MatchApuesta = ({ match, apuestas }) => {
     const [open, setOpen] = useState(false)
     const [apuesta, setApuesta] = useState(null)
+    const [error, setError] = useState(null)
+
+
     const modalApuesta = () => {
         setOpen(!open)
+        setAp({
+            id: match.id,
+            winner: null,
+            home_goals: null,
+            away_goals: null,
+            name: user.email
+        })
+        setError('')
     }
+    const { user } = useAuth()
+
+    const [ap, setAp] = useState({
+        id: match.id,
+        winner: null,
+        home_goals: null,
+        away_goals: null,
+        name: user.email
+    })
 
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.down("md"))
@@ -90,7 +110,7 @@ export const MatchApuesta = ({ match, apuestas }) => {
                 </Box>
 
             </Paper>
-            <ModalApostar open={open} modalApuesta={modalApuesta} match={match} />
+            <ModalApostar open={open} modalApuesta={modalApuesta} match={match} apuesta={ap} setApuesta={setAp} error={error} setError={setError} />
         </>
     )
 }
