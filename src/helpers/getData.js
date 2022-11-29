@@ -59,3 +59,9 @@ export const validarUsuario = async (email) => {
          
         return arr.length > 0 ? true : false
 } 
+
+export const newApuesta = async (apuesta, nameApuesta) => {
+        const collApuestas = collection(db, "apuestas")
+        const docRef = doc(collApuestas, nameApuesta)
+        await setDoc(docRef, apuesta)
+    }

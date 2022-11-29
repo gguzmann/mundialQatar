@@ -42,10 +42,8 @@ export const ModalApostar = ({ open, modalApuesta, match }) => {
         if(apuesta.winner == match.home_team.name && apuesta.home_goals < apuesta.away_goals) {setError('Resultado Imposible'); return false}
         if(apuesta.winner == match.away_team.name && apuesta.away_goals < apuesta.home_goals) {setError('Resultado Imposible'); return false}
         try {
+            newApuesta(apuesta, match.home_team_country + '_' + match.away_team_country + '_' + apuesta.name.split('@')[0] )
 
-            const collApuesta = collection(db, "apuestas")
-            const docRef = doc(collApuesta)
-            const newApuesta = await setDoc(docRef, apuesta)
             addApuesta(apuesta)
             e.target.reset()
             modalApuesta()

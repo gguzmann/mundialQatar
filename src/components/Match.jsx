@@ -12,7 +12,7 @@ export const Match = ({ match }) => {
     return (
         <>
             <Paper sx={{ display: 'flex', m: 2, p: 2, maxWidth: '100%' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent:'center' ,  width: '25%' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '25%' }}>
                     <Box>
                         <div>{dia}</div>
 
@@ -44,7 +44,7 @@ export const Match = ({ match }) => {
                 <Box sx={{ width: '80%' }}>
 
                     <Box sx={{ textAlign: 'center', p: 2, mb: 1, display: 'flex', alignItems: 'center' }}>
-                        <img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${match.home_team.name.split(' ').join('_')}.jpg`} width="50" height='50' />
+                        <img src={match.home_team_country ? `https://www.sciencekids.co.nz/images/pictures/flags96/${match.home_team.name.split(' ').join('_')}.jpg` : 'https://bolt-gcdn.sc-cdn.net/3/hxTBED1t41k8SBqUgBNOq?bo=EhgaABoAMgF9OgEEQgYInJjWhgZIAlASYAE%3D&uc=18'} width="50" height='50' />
                         <Typography sx={{ flexGrow: 1, fontSize: 20 }}>
                             {match.home_team.name}
                         </Typography>
@@ -54,7 +54,7 @@ export const Match = ({ match }) => {
                     </Box>
                     <Divider />
                     <Box sx={{ textAlign: 'center', p: 2, mb: 1, display: 'flex', alignItems: 'center' }}>
-                        <img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${match.away_team.name.split(' ').join('_')}.jpg`} width="50" height='50' />
+                        <img src={match.home_team_country ? `https://www.sciencekids.co.nz/images/pictures/flags96/${match.away_team.name.split(' ').join('_')}.jpg` : 'https://bolt-gcdn.sc-cdn.net/3/hxTBED1t41k8SBqUgBNOq?bo=EhgaABoAMgF9OgEEQgYInJjWhgZIAlASYAE%3D&uc=18'} width="50" height='50' />
                         <Typography sx={{ flexGrow: 1, fontSize: 20 }}>
                             {match.away_team.name}
                         </Typography>
