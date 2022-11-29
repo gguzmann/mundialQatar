@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useAuth } from '../context/authContext'
 import { useStore } from '../context/storeContext'
 import { db } from '../firebase'
+import { newApuesta } from '../helpers/getData'
 
 export const ModalApostar = ({ open, modalApuesta, match }) => {
 
