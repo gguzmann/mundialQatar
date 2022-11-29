@@ -8,7 +8,6 @@ export const LoginContainer = () => {
     const [open, setOpen] = useState(false)
     const handleModal = () => {
         setOpen(!open)
-        console.log(open)
         setLogin(true)
     }
     return (
