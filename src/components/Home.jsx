@@ -8,8 +8,9 @@ import { CurrentMatchCard } from './CurrentMatchCard'
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import ScoreboardOutlinedIcon from '@mui/icons-material/ScoreboardOutlined';
 import FlagIcon from '@mui/icons-material/Flag';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 export const Home = () => {
 
   const [current, setCurrent] = useState(0)
@@ -19,7 +20,7 @@ export const Home = () => {
 
 
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   useEffect(() => {
     setToday(currentMatch)
@@ -28,30 +29,34 @@ export const Home = () => {
 
   return (
     <>
-          <Box sx={{ m: 3, mb: 5}}>
+      <Box sx={{ m: 3, mb: 5 }}>
 
-      {
-        today.length > 0 &&
-          isMobile ?
-          <>
-            <CurrentMatchCard match={today[current]} />
-            <Box value={select} sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
-              <IconButton onClick={() => {current > 0 && setCurrent(current - 1)}} variant="outlined"><ArrowBackIcon/></IconButton>
-              <IconButton onClick={() => {current < 3 && setCurrent(current + 1)}} variant="outlined"><ArrowForwardIcon/></IconButton>
+        {
+          today.length > 0 &&
+            isMobile ?
+            <>
+              <Box value={select} sx={{ display: 'flex', justifyContent: 'center'}}>
+                <Box sx={{display:'flex', alignItems:'center'}}>
+                  <IconButton onClick={() => { current > 0 && setCurrent(current - 1) }}  variant="outlined"><ArrowBackIosNewIcon /></IconButton>
+                </Box>
+                <CurrentMatchCard match={today[current]} />
+                <Box sx={{display:'flex', alignItems:'center'}}>
+                  <IconButton onClick={() => { current < 3 && setCurrent(current + 1) }}  variant="outlined"><ArrowForwardIosIcon /></IconButton>
+                </Box>
+              </Box>
+            </>
+            :
+            <Box sx={{ display: 'flex', gap: 3, m: 3, justifyContent: 'center' }}>
+              {
+                today.map(x => <CurrentMatchCard key={x.id} match={x} />)
+              }
             </Box>
-          </>
-          :
-          <Box sx={{ display: 'flex', gap: 3, m: 3, justifyContent: 'center' }}>
-            {
-              today.map(x => <CurrentMatchCard key={x.id} match={x} />)
-            }
-          </Box>
-      }
+        }
       </Box>
 
 
 
-      <Typography variant='h4' sx={{ textAlign: 'center', m:3}}>Puntaje</Typography>
+      <Typography variant='h4' sx={{ textAlign: 'center', m: 3 }}>Puntaje</Typography>
       <Box sx={{ m: 3, display: 'flex', justifyContent: 'center' }}>
         <TableContainer sx={{ width: '100%' }}>
           <Table>
