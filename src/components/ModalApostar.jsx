@@ -28,7 +28,6 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
                 ...apuesta,
                 [name]: value
             })
-            console.log(apuesta)
 
             // e.target.form[2].focus()
         }

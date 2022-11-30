@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, useMediaQuery } from '@mui/material'
+import { Button, ButtonGroup, Divider, getStepContentUtilityClass, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, ToggleButton, ToggleButtonGroup, Typography, useMediaQuery } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../context/authContext'
@@ -8,50 +8,70 @@ import { CurrentMatchCard } from './CurrentMatchCard'
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import ScoreboardOutlinedIcon from '@mui/icons-material/ScoreboardOutlined';
 import FlagIcon from '@mui/icons-material/Flag';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 export const Home = () => {
 
-  const [current, setCurrent] = useState([])
-  const { currentMatch, apuestas } = useStore()
+  const [current, setCurrent] = useState(0)
+  const [today, setToday] = useState([])
+  const { currentMatch } = useStore()
+  const [select, setSelect] = useState(0)
 
 
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   useEffect(() => {
-    setCurrent(currentMatch)
+    setToday(currentMatch)
   }, [currentMatch])
 
-  console.log(apuestas)
 
   return (
     <>
-      <Box sx={{ display: isMobile ? 'flex-wrap' : 'flex', gap: 3, m: 3, justifyContent: 'center' }}>
-        {
-          current.map(x => <CurrentMatchCard key={x.id} match={x} />)
-        }
+          <Box sx={{ m: 3, mb: 5}}>
+
+      {
+        today.length > 0 &&
+          isMobile ?
+          <>
+            <CurrentMatchCard match={today[current]} />
+            <Box value={select} sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+              <IconButton onClick={() => {current > 0 && setCurrent(current - 1)}} variant="outlined"><ArrowBackIcon/></IconButton>
+              <IconButton onClick={() => {current < 3 && setCurrent(current + 1)}} variant="outlined"><ArrowForwardIcon/></IconButton>
+            </Box>
+          </>
+          :
+          <Box sx={{ display: 'flex', gap: 3, m: 3, justifyContent: 'center' }}>
+            {
+              today.map(x => <CurrentMatchCard key={x.id} match={x} />)
+            }
+          </Box>
+      }
       </Box>
-        <Typography variant='h4' sx={{textAlign:'center'}}>Puntaje</Typography>
-      <Box sx={{ m: 3, display:'flex', justifyContent:'center' }}>
-        <TableContainer sx={{ maxWidth: '40%' }}>
+
+
+
+      <Typography variant='h4' sx={{ textAlign: 'center', m:3}}>Puntaje</Typography>
+      <Box sx={{ m: 3, display: 'flex', justifyContent: 'center' }}>
+        <TableContainer sx={{ width: '100%' }}>
           <Table>
-          <TableHead sx={{ backgroundColor: 'rgba(255, 255, 255, .1)' }}>
-                            <TableRow>
-                                <TableCell >Acierto</TableCell>
-                                <TableCell align='center'>Puntos</TableCell>
-                            </TableRow>
-                        </TableHead>
+            <TableHead sx={{ backgroundColor: 'rgba(255, 255, 255, .1)' }}>
+              <TableRow>
+                <TableCell >Acierto</TableCell>
+                <TableCell align='center'>Puntos</TableCell>
+              </TableRow>
+            </TableHead>
             <TableBody>
               <TableRow >
-                <TableCell sx={{display:'flex', alignItems:'center'}} > <ScoreboardOutlinedIcon/> Resultado</TableCell>
+                <TableCell sx={{ display: 'flex', alignItems: 'center' }} > <ScoreboardOutlinedIcon /> Resultado</TableCell>
                 <TableCell align='center'>+1</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell sx={{display:'flex', alignItems:'center'}}> <FlagIcon/> Ganador</TableCell>
+                <TableCell sx={{ display: 'flex', alignItems: 'center' }}> <FlagIcon /> Ganador</TableCell>
                 <TableCell align='center'>+1</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell sx={{display:'flex', alignItems:'center'}}> <SportsSoccerIcon/> Goles</TableCell>
+                <TableCell sx={{ display: 'flex', alignItems: 'center' }}> <SportsSoccerIcon /> Goles</TableCell>
                 <TableCell align='center'>+1</TableCell>
               </TableRow>
             </TableBody>

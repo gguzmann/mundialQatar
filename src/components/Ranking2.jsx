@@ -17,13 +17,13 @@ export const Ranking2 = () => {
     const handleChange = (e) => {
         setSelect(e.target.value)
         if (e.target.value == 0) setPartidos(matches)
-        if (e.target.value == 1) setPartidos(matches.filter(x => x.stage_name == "First stage"  ))
-        if (e.target.value == 2) setPartidos(matches.filter(x => x.stage_name == "Round of 16"  ))
-        if (e.target.value == 3) setPartidos(matches.filter(x => x.stage_name == "Quarter-final"  ))
-        if (e.target.value == 4) setPartidos(matches.filter(x => x.stage_name == "Semi-final"  ))
-        if (e.target.value == 5) setPartidos(matches.filter(x => x.stage_name == "Final"  ))
-        if(e.target.value == 6) setPartidos(matches.filter(x => new Date(x.datetime).getDate() == new Date().getDate()  ))
-      }
+        if (e.target.value == 1) setPartidos(matches.filter(x => x.stage_name == "First stage"))
+        if (e.target.value == 2) setPartidos(matches.filter(x => x.stage_name == "Round of 16"))
+        if (e.target.value == 3) setPartidos(matches.filter(x => x.stage_name == "Quarter-final"))
+        if (e.target.value == 4) setPartidos(matches.filter(x => x.stage_name == "Semi-final"))
+        if (e.target.value == 5) setPartidos(matches.filter(x => x.stage_name == "Final"))
+        if (e.target.value == 6) setPartidos(matches.filter(x => new Date(x.datetime).getDate() == new Date().getDate()))
+    }
 
     useEffect(() => {
         setPartidos(matches.filter(x => x.status == "completed"))
@@ -56,7 +56,6 @@ const Drop = ({ match }) => {
 
     useEffect(() => {
         setApuestas(allApuestas.filter(x => x.id == match.id))
-        console.log(allApuestas)
     }, [matches, allApuestas])
 
     return (
@@ -79,19 +78,19 @@ const Drop = ({ match }) => {
             </AccordionSummary>
             <AccordionDetails>
                 < Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', my: 1 }}>
-                    <Typography sx={{width:'35%'}}><PersonOutlineOutlinedIcon/></Typography>
-                    <Typography sx={{width:'19%'}}><ScoreboardOutlinedIcon/></Typography>
-                    <Typography sx={{width:'19%'}}><FlagIcon/></Typography>
-                    <Typography sx={{width:'19%'}}><SportsSoccerIcon/></Typography>
+                    <Typography sx={{ width: '35%' }}><PersonOutlineOutlinedIcon /></Typography>
+                    <Typography sx={{ width: '19%' }}><ScoreboardOutlinedIcon /></Typography>
+                    <Typography sx={{ width: '19%' }}><FlagIcon /></Typography>
+                    <Typography sx={{ width: '19%' }}><SportsSoccerIcon /></Typography>
                 </Box>
                 <Divider />
                 {
                     apuestas.map((x, i) =>
                         < Box key={i} sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', my: 1 }}>
-                            <Typography sx={{width:'35%'}} >{x.name.split('@')[0]}</Typography>
-                            <Typography sx={{width:'20%'}} ><Button variant='outlined' color={match.home_team.goals == x.home_goals && match.away_team.goals == x.away_goals ? 'success' : 'error'}>{x.home_goals} - {x.away_goals}</Button></Typography>
-                            <Typography sx={{width:'20%'}} ><Button variant='outlined' color={match.winner == x.winner ? 'success' : 'error'}>{x.winner.slice(0, 3)}</Button></Typography>
-                            <Typography sx={{width:'20%'}} ><Button variant='outlined' color={Number(match.home_team.goals) + Number(match.away_team.goals) == Number(x.home_goals) + Number(x.away_goals) ? 'success' : 'error'}>{Number(x.home_goals) + Number(x.away_goals)}</Button></Typography>
+                            <Typography sx={{ width: '35%' }} >{x.name.split('@')[0]}</Typography>
+                            <Typography sx={{ width: '20%' }} ><Button variant='outlined' color={match.home_team.goals == x.home_goals && match.away_team.goals == x.away_goals ? 'success' : 'error'}>{x.home_goals} - {x.away_goals}</Button></Typography>
+                            <Typography sx={{ width: '20%' }} ><Button variant='outlined' color={match.winner == x.winner ? 'success' : 'error'}>{x.winner.slice(0, 3)}</Button></Typography>
+                            <Typography sx={{ width: '20%' }} ><Button variant='outlined' color={Number(match.home_team.goals) + Number(match.away_team.goals) == Number(x.home_goals) + Number(x.away_goals) ? 'success' : 'error'}>{Number(x.home_goals) + Number(x.away_goals)}</Button></Typography>
                         </Box>
                     )
                 }
