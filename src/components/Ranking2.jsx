@@ -67,9 +67,13 @@ const Drop = ({ match }) => {
 
                         <img src={match.home_team_country ? `https://www.sciencekids.co.nz/images/pictures/flags96/${match.home_team.name.split(' ').join('_')}.jpg` : 'https://bolt-gcdn.sc-cdn.net/3/hxTBED1t41k8SBqUgBNOq?bo=EhgaABoAMgF9OgEEQgYInJjWhgZIAlASYAE%3D&uc=18'} width="30" height='30' />
                     </Box>
-                    <Typography sx={{ textAlign: 'center', width: '60%' }}>
-                        {match.home_team.name} {match.home_team.goals} vs {match.away_team.goals} {match.away_team.name}
-                    </Typography>
+                    <Box sx={{ textAlign: 'center', width: '100%', display:'flex', justifyContent:'space-around',  }}>
+                        <Typography>{match.home_team.name}</Typography> 
+                        <Typography>{match.home_team.goals}</Typography> 
+                        vs 
+                        <Typography>{match.away_team.goals}</Typography> 
+                        <Typography>{match.away_team.name}</Typography>
+                    </Box>
                     <Box sx={{ width: '20%' }}>
 
                         <img src={match.away_team_country ? `https://www.sciencekids.co.nz/images/pictures/flags96/${match.away_team.name.split(' ').join('_')}.jpg` : 'https://bolt-gcdn.sc-cdn.net/3/hxTBED1t41k8SBqUgBNOq?bo=EhgaABoAMgF9OgEEQgYInJjWhgZIAlASYAE%3D&uc=18'} width="30" height='30' />
@@ -78,10 +82,10 @@ const Drop = ({ match }) => {
             </AccordionSummary>
             <AccordionDetails>
                 < Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', my: 1 }}>
-                    <Typography sx={{ width: '35%' }}><PersonOutlineOutlinedIcon /></Typography>
+                    <Typography sx={{ width: '35%' }}></Typography>
                     <Typography sx={{ width: '19%' }}><ScoreboardOutlinedIcon /></Typography>
                     <Typography sx={{ width: '19%' }}><FlagIcon /></Typography>
-                    <Typography sx={{ width: '19%' }}><SportsSoccerIcon /></Typography>
+                    {/* <Typography sx={{ width: '19%' }}><SportsSoccerIcon /></Typography> */}
                 </Box>
                 <Divider />
                 {
@@ -90,7 +94,7 @@ const Drop = ({ match }) => {
                             <Typography sx={{ width: '35%' }} >{x.name.split('@')[0]}</Typography>
                             <Typography sx={{ width: '20%' }} ><Button variant='outlined' color={match.home_team.goals == x.home_goals && match.away_team.goals == x.away_goals ? 'success' : 'error'}>{x.home_goals} - {x.away_goals}</Button></Typography>
                             <Typography sx={{ width: '20%' }} ><Button variant='outlined' color={match.winner == x.winner ? 'success' : 'error'}>{x.winner.slice(0, 3)}</Button></Typography>
-                            <Typography sx={{ width: '20%' }} ><Button variant='outlined' color={Number(match.home_team.goals) + Number(match.away_team.goals) == Number(x.home_goals) + Number(x.away_goals) ? 'success' : 'error'}>{Number(x.home_goals) + Number(x.away_goals)}</Button></Typography>
+                            {/* <Typography sx={{ width: '20%' }} ><Button variant='outlined' color={Number(match.home_team.goals) + Number(match.away_team.goals) == Number(x.home_goals) + Number(x.away_goals) ? 'success' : 'error'}>{Number(x.home_goals) + Number(x.away_goals)}</Button></Typography> */}
                         </Box>
                     )
                 }

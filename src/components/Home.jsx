@@ -10,6 +10,7 @@ import ScoreboardOutlinedIcon from '@mui/icons-material/ScoreboardOutlined';
 import FlagIcon from '@mui/icons-material/Flag';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export const Home = () => {
 
@@ -56,9 +57,9 @@ export const Home = () => {
 
 
 
-      <Typography variant='h4' sx={{ textAlign: 'center', m: 3 }}>Puntaje</Typography>
+      <Typography variant='h4' sx={{ textAlign: 'center', m: 3 }}>Puntaje <EmojiEventsIcon/></Typography>
       <Box sx={{ m: 3, display: 'flex', justifyContent: 'center' }}>
-        <TableContainer sx={{ width: '100%' }}>
+        <TableContainer sx={{ width: '100%', maxWidth: '500px' }}>
           <Table>
             <TableHead sx={{ backgroundColor: 'rgba(255, 255, 255, .1)' }}>
               <TableRow>
@@ -75,10 +76,10 @@ export const Home = () => {
                 <TableCell sx={{ display: 'flex', alignItems: 'center' }}> <FlagIcon /> Ganador</TableCell>
                 <TableCell align='center'>+1</TableCell>
               </TableRow>
-              <TableRow>
+              {/* <TableRow>
                 <TableCell sx={{ display: 'flex', alignItems: 'center' }}> <SportsSoccerIcon /> Goles</TableCell>
                 <TableCell align='center'>+1</TableCell>
-              </TableRow>
+              </TableRow> */}
             </TableBody>
           </Table>
         </TableContainer>

@@ -1,7 +1,12 @@
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Box, Button, Divider, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useStore } from '../context/storeContext'
 import { getAllApuestas } from '../helpers/getData'
+import FlagIcon from '@mui/icons-material/Flag';
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+import ScoreboardOutlinedIcon from '@mui/icons-material/ScoreboardOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export const Ranking = () => {
     const [users, setUsers] = useState([])
@@ -36,36 +41,31 @@ export const Ranking = () => {
 
     return (
         <>
-            <Box sx={{ m: 3 }}>
-                <TableContainer sx={{ width: '100%' }}>
-                    <Table>
-                        <TableHead sx={{ backgroundColor: 'rgba(255, 255, 255, .1)' }}>
-                            <TableRow>
-                                <TableCell >Usuario</TableCell>
-                                <TableCell align='center'>Puntos</TableCell>
-                                <TableCell align='center'>Apuestas</TableCell>
-                                <TableCell align='center'>Aciertos Resultado</TableCell>
-                                <TableCell align='center'>Aciertos Win</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {
-                                users.map((x, i) =>
-                                    < TableRow key={i}>
-                                        <TableCell  width='10%'>{x.name}</TableCell>
-                                        <TableCell align='center' width='10%'>{x.aciertos + x.aciertoResultado}</TableCell>
-                                        <TableCell align='center' width='10%'>{x.apuestas}</TableCell>
-                                        <TableCell align='center' width='10%'>{x.aciertos}</TableCell>
-                                        <TableCell align='center' width='10%'>{x.aciertoResultado}</TableCell>
-                                    </TableRow>
-                                )
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+           
+            <Box sx={{ m: 2 }}>
+                            
+                < Grid container sx={{ backgroundColor: 'rgba(255, 255, 255, .1)', p:2 }} >
+                    <Grid item xs={5} ></Grid>
+                    <Grid item xs={2} ><EmojiEventsIcon /></Grid>
+                    <Grid item xs={2} ><ScoreboardOutlinedIcon /></Grid>
+                    <Grid item xs={2} ><FlagIcon /></Grid>
+                    {/* <Typography sx={{ width: '19%' }}><SportsSoccerIcon /></Typography> */}
+                </Grid>
+                <Divider sx={{my:2}} />
+                {
+                    users.map((x, i) =>
+                    <Box key={i} >
+                        < Grid container key={i} spacing={2} >
+                            <Grid item xs={5} >{x.name.split('@')[0]}</Grid>
+                            <Grid item xs={2} >{x.aciertos + x.aciertoResultado}</Grid>
+                            <Grid item xs={2} >{x.aciertos} </Grid>
+                            <Grid item xs={2} >{x.aciertoResultado}</Grid>
+                        </Grid>
+                        <Divider sx={{my:2}} />
+                    </Box>
+                    )
+                }
             </Box>
-
-
         </>
     )
 }

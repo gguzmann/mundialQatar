@@ -52,7 +52,7 @@ export const MatchApuesta = ({ match, apuestas }) => {
     }
     return (
         <>
-            <Paper sx={{ backgroundColor: test, width: '100%' }}>
+            <Paper sx={{ backgroundColor: match.winner && test, width: '100%' }}>
 
                 <Box sx={{ p: 2, mb: 1 }}>
                     <Box sx={{ textAlign: 'center' }}>
@@ -78,8 +78,8 @@ export const MatchApuesta = ({ match, apuestas }) => {
                             {
                                 apuesta ?
                                     <>
-                                        <Button variant='outlined' color={colorGoalsHome != '' ? colorGoalsHome : 'primary'} sx={{ p: 1, fontSize: 20 }}>{apuesta.home_goals}</Button>
-                                        <Button variant='outlined' color={colorGoalsAway != '' ? colorGoalsAway : 'primary'} sx={{ p: 1, fontSize: 20 }}>{apuesta.away_goals}</Button>
+                                        <Button variant='outlined' color={match.winner && colorGoalsHome != '' ? colorGoalsHome : 'primary'} sx={{ p: 1, fontSize: 20 }}>{apuesta.home_goals}</Button>
+                                        <Button variant='outlined' color={match.winner && colorGoalsAway != '' ? colorGoalsAway : 'primary'} sx={{ p: 1, fontSize: 20 }}>{apuesta.away_goals}</Button>
                                     </>
                                     :
                                     // <Button onClick={modalApuesta} variant="contained" color="success">Apostar</Button>
