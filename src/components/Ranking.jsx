@@ -50,7 +50,7 @@ export const Ranking = () => {
                 </Grid>
                 <Divider sx={{my:2}} />
                 {
-                    users.map((x, i) =>
+                    users.sort((a,b) => (a.aciertos + a.aciertoResultado) < (b.aciertos + b.aciertoResultado)).map((x, i) =>
                     <Box key={i} >
                         < Grid container key={i} spacing={2} >
                             <Grid item xs={5} >{x.name.split('@')[0]}</Grid>
