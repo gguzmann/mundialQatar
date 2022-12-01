@@ -47,7 +47,7 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
         if (apuesta.winner == match.away_team.name && apuesta.away_goals < apuesta.home_goals) { setError('Resultado Imposible'); return false }
         console.log('apuesta:', apuesta.winner, 'resultado:', apuesta.home_goals, apuesta.away_goals)
         try {
-            newApuesta(apuesta, match.home_team_country + '_' + match.away_team_country + '_' + apuesta.name.split('@')[0])
+            newApuesta(apuesta, apuesta.name.split('@')[0] + '_' + match.home_team_country + '_' + match.away_team_country)
 
             addApuesta(apuesta)
             e.target.reset()

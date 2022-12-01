@@ -17,12 +17,10 @@ export const Ranking = () => {
             setUsers([])
 
             const acierto = allApuestas.filter(x => x.winner == matches[matches.findIndex(i => x.id == i.id)].winner )
-            // const noAcierto = allApuestas.filter(x => x.winner != matches[x.id - 2].winner)
             const userUnique = [...new Set(allApuestas.map(x => x.name))]
             userUnique.forEach(user => {
                 const arr = acierto.filter(x => x.name == user)
                 const arr2 = arr.filter(x => x.home_goals == matches[matches.findIndex(i => x.id == i.id)].home_team.goals && x.away_goals == matches[matches.findIndex(i => x.id == i.id)].away_team.goals)
-                // const arr3 = noAcierto.filter(x => x.name == user)
                 const obj = {
                     aciertos: arr.length,
                     apuestas: allApuestas.filter(e => e.name == user).length,
