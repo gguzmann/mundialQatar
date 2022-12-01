@@ -16,9 +16,7 @@ export const Ranking = () => {
         if (matches) {
             setUsers([])
 
-            console.log(matches[40])
             const acierto = allApuestas.filter(x => x.winner == matches[matches.findIndex(i => x.id == i.id)].winner )
-            console.log(acierto)
             // const noAcierto = allApuestas.filter(x => x.winner != matches[x.id - 2].winner)
             const userUnique = [...new Set(allApuestas.map(x => x.name))]
             userUnique.forEach(user => {

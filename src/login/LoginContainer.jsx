@@ -12,7 +12,7 @@ export const LoginContainer = () => {
     }
     return (
         <>
-            <Button color="inherit" onClick={() => handleModal()} sx={{ flexGrow: 1 }}>Login</Button>
+            <Button color="inherit" onClick={() => handleModal()} sx={{ flexGrow: 1 }}>Acceder</Button>
 
             {
                 login ?
