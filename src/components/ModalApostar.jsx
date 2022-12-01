@@ -16,6 +16,7 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
     }
 
     const hadleChange = (e) => {
+        console.log('change')
         const { value, name } = e.target
         if (!/^\d+$/.test(value)) {
             e.target.value = null
@@ -28,8 +29,14 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
                 ...apuesta,
                 [name]: value
             })
-
-            // e.target.form[2].focus()
+            if(e.target.form[2].value != '') {
+                
+                e.target.form[4].focus()
+            }else{
+                
+                console.log(e.target.form[2].value)
+            }
+            
         }
     }
 
@@ -56,7 +63,7 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
             open={open}
             onClose={modalApuesta}
         >
-            <Box sx={{ p: 3 }} component="form" onSubmit={handleApostar} autoComplete='off'>
+            <Box sx={{ p: 3 }} component="form" onSubmit={handleApostar} autoComplete='off' onChange={hadleChange}>
 
                 <DialogTitle sx={{ textAlign: 'center' }}>
                     {match.home_team.name} vs {match.away_team.name}
@@ -78,19 +85,19 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
                         <Typography sx={{ textAlign: 'center', m: 1 }}>Elige el resultado:</Typography>
 
                         <Box sx={{ display: 'flex', mx: 1, justifyContent: 'center', alignItems: 'center', gap: 2 }}>
-                            <TextField sx={{ width: 50 }} id="outlined-basic" variant="outlined" name="home_goals" inputProps={{ maxLength: 1 }} autoFocus required onChange={hadleChange} />
+                            <TextField sx={{ width: 50 }} id="outlined-basic" variant="outlined" name="home_goals" inputProps={{ maxLength: 1 }} autoFocus required  />
                             vs
-                            <TextField sx={{ width: 50 }} id="outlined-basic" variant="outlined" name="away_goals" inputProps={{ maxLength: 1 }} required onChange={hadleChange} />
+                            <TextField sx={{ width: 50 }} id="outlined-basic" variant="outlined" name="away_goals" inputProps={{ maxLength: 1 }} required  />
                         </Box>
 
-                        <Typography sx={{ textAlign: 'center', m: 1 }}>Cantidad de goles:</Typography>
+                        {/* <Typography sx={{ textAlign: 'center', m: 1 }}>Cantidad de goles:</Typography>
                         <Box sx={{ display: 'flex', mx: 1, justifyContent: 'center', alignItems: 'center' }}>
 
                             <IconButton>
                                 <SportsSoccerIcon />
                             </IconButton>
                             {Number(apuesta.home_goals) + Number(apuesta.away_goals)}
-                        </Box>
+                        </Box> */}
                     </>
                 }
                 {

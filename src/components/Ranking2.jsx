@@ -16,7 +16,7 @@ export const Ranking2 = () => {
 
     const handleChange = (e) => {
         setSelect(e.target.value)
-        // if (e.target.value == 0) setPartidos(matches)
+        if (e.target.value == 0) setPartidos(matches.filter(x => x.id > 35))
         // if (e.target.value == 1) setPartidos(matches.filter(x => x.stage_name == "First stage"))
         if (e.target.value == 2) setPartidos(matches.filter(x => x.stage_name == "Round of 16"))
         if (e.target.value == 3) setPartidos(matches.filter(x => x.stage_name == "Quarter-final"))
@@ -33,7 +33,7 @@ export const Ranking2 = () => {
     return (
         <Box>
             <Select onChange={handleChange} value={select} sx={{ m: 3, width: '50%', maxWidth: '300px' }}>
-                {/* <MenuItem value={0}>Todos</MenuItem> */}
+                <MenuItem value={0}>Todos</MenuItem>
                 <MenuItem value={6}>Hoy</MenuItem>
                 {/* <MenuItem value={1}>Fase inicial</MenuItem> */}
                 <MenuItem value={2}>Octavos</MenuItem>

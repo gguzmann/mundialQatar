@@ -16,14 +16,15 @@ export const Ranking = () => {
         if (matches) {
             setUsers([])
 
-
-            const acierto = allApuestas.filter(x => x.winner == matches[x.id - 1].winner)
-            const noAcierto = allApuestas.filter(x => x.winner != matches[x.id - 1].winner)
+            console.log(matches[40])
+            const acierto = allApuestas.filter(x => x.winner == matches[matches.findIndex(i => x.id == i.id)].winner )
+            console.log(acierto)
+            // const noAcierto = allApuestas.filter(x => x.winner != matches[x.id - 2].winner)
             const userUnique = [...new Set(allApuestas.map(x => x.name))]
             userUnique.forEach(user => {
                 const arr = acierto.filter(x => x.name == user)
-                const arr2 = arr.filter(x => x.home_goals == matches[x.id - 1].home_team.goals && x.away_goals == matches[x.id - 1].away_team.goals)
-                const arr3 = noAcierto.filter(x => x.name == user)
+                const arr2 = arr.filter(x => x.home_goals == matches[matches.findIndex(i => x.id == i.id)].home_team.goals && x.away_goals == matches[matches.findIndex(i => x.id == i.id)].away_team.goals)
+                // const arr3 = noAcierto.filter(x => x.name == user)
                 const obj = {
                     aciertos: arr.length,
                     apuestas: allApuestas.filter(e => e.name == user).length,
@@ -58,8 +59,8 @@ export const Ranking = () => {
                         < Grid container key={i} spacing={2} >
                             <Grid item xs={5} >{x.name.split('@')[0]}</Grid>
                             <Grid item xs={2} >{x.aciertos + x.aciertoResultado}</Grid>
-                            <Grid item xs={2} >{x.aciertos} </Grid>
                             <Grid item xs={2} >{x.aciertoResultado}</Grid>
+                            <Grid item xs={2} >{x.aciertos} </Grid>
                         </Grid>
                         <Divider sx={{my:2}} />
                     </Box>
@@ -69,3 +70,15 @@ export const Ranking = () => {
         </>
     )
 }
+
+
+// Buenas, por ahora han confirmado:
+
+// - Tomi
+// - Nico
+// - Dauno
+// - Victor
+// - Simon
+// - Martin
+// - Yo
+// -  Nico(Amigo)
