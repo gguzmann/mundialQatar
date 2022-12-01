@@ -74,7 +74,6 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
                     <Button variant={apuesta.winner == match.home_team.name ? 'contained' : 'outlined'} sx={{ p: 2 }} color='success' onClick={() => handleWinner(match.home_team.name)}>
                         <img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${match.home_team.name.split(' ').join('_')}.jpg`} width="30" height='25' />
                     </Button>
-
                     <Button variant={apuesta.winner == match.away_team.name ? 'contained' : 'outlined'} sx={{ p: 2 }} color='success' onClick={() => handleWinner(match.away_team.name)}>
                         <img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${match.away_team.name.split(' ').join('_')}.jpg`} width="30" height='25' />
                     </Button>

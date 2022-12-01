@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore"
+import { collection, doc, FieldValue, getDoc, getDocs, increment, query, setDoc, updateDoc, where } from "firebase/firestore"
 import { db } from "../firebase"
 
 const URL = 'https://world-cup-json-2022.fly.dev/'
@@ -22,29 +22,29 @@ export const getMatchCurrent = async () => {
 }
 
 export const getApuestas = async (user) => {
-        if(!user) return false
+        if (!user) return false
 
         const collectionApuestas = collection(db, "apuestas")
         const q = query(collectionApuestas, where("name", "==", user.email))
-    
+
         const arr = []
         const queryApuestas = await getDocs(q)
         queryApuestas.forEach((doc) => {
-          const obj = doc.data()
-          arr.push(obj)
+                const obj = doc.data()
+                arr.push(obj)
         })
         return arr
 }
 
 export const getAllApuestas = async (user) => {
-        if(!user) return false
+        if (!user) return false
 
         const collectionApuestas = collection(db, "apuestas")
         const arr = []
         const queryApuestas = await getDocs(collectionApuestas)
         queryApuestas.forEach((doc) => {
-          const obj = doc.data()
-          arr.push(obj)
+                const obj = doc.data()
+                arr.push(obj)
         })
         return arr
 }
@@ -56,12 +56,27 @@ export const validarUsuario = async (email) => {
         const arr = []
         const queryParticipantes = await getDocs(q)
         queryParticipantes.forEach(x => arr.push(x.data()))
-         
+
         return arr.length > 0 ? true : false
-} 
+}
 
 export const newApuesta = async (apuesta, nameApuesta) => {
         const collApuestas = collection(db, "apuestas")
         const docRef = doc(collApuestas, nameApuesta)
         await setDoc(docRef, apuesta)
-    }
+}
+
+export const countParticipantes = async (user) => {
+        if (!user) return false
+
+        const collParticipantes = collection(db, "participantes")
+        const docRef = doc(collParticipantes, user.email)
+
+        const usuario = await getDoc(docRef)
+        if (usuario.exists()) {
+                await updateDoc(docRef, { count: increment(1) })
+        }else{
+                await setDoc(docRef, { count: increment(1) })
+        }
+
+}

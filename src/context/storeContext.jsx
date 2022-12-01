@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAllApuestas, getAllMatches, getAllTeams, getApuestas, getMatchCurrent } from "../helpers/getData";
+import { countParticipantes, getAllApuestas, getAllMatches, getAllTeams, getApuestas, getMatchCurrent } from "../helpers/getData";
 import { useAuth } from "./authContext";
 
 
@@ -17,7 +17,11 @@ export function StoreProvider({ children }) {
 
     const { user } = useAuth()
 
+
+    
+
     useEffect(() => {
+        countParticipantes(user)
         Promise.all([
             getAllMatches(),
             getAllTeams(),
