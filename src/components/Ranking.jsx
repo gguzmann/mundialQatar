@@ -71,14 +71,3 @@ export const Ranking = () => {
     )
 }
 
-
-// Buenas, por ahora han confirmado:
-
-// - Tomi
-// - Nico
-// - Dauno
-// - Victor
-// - Simon
-// - Martin
-// - Yo
-// -  Nico(Amigo)
