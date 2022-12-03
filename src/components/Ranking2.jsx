@@ -11,7 +11,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 export const Ranking2 = () => {
     const { matches } = useStore()
     const [partidos, setPartidos] = useState([])
-    const [select, setSelect] = useState(2)
+    const [select, setSelect] = useState(6)
 
 
     const handleChange = (e) => {
@@ -22,7 +22,7 @@ export const Ranking2 = () => {
         if (e.target.value == 3) setPartidos(matches.filter(x => x.stage_name == "Quarter-final"))
         if (e.target.value == 4) setPartidos(matches.filter(x => x.stage_name == "Semi-final"))
         if (e.target.value == 5) setPartidos(matches.filter(x => x.stage_name == "Final"))
-        // if (e.target.value == 6) setPartidos(matches.filter(x => new Date(x.datetime).getDate() == new Date().getDate()))
+        if (e.target.value == 6) setPartidos(matches.filter(x => new Date(x.datetime).getDate() == new Date().getDate()))
     }
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export const Ranking2 = () => {
         <Box>
             <Select onChange={handleChange} value={select} sx={{ m: 3, width: '50%', maxWidth: '300px' }}>
                 {/* <MenuItem value={0}>Todos</MenuItem> */}
-                {/* <MenuItem value={6}>Hoy</MenuItem> */}
+                <MenuItem value={6}>Hoy</MenuItem>
                 {/* <MenuItem value={1}>Fase inicial</MenuItem> */}
                 <MenuItem value={2}>Octavos</MenuItem>
                 <MenuItem value={3}>Cuartos</MenuItem>
