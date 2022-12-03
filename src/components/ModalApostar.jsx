@@ -13,6 +13,7 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
 
     const handleWinner = (team) => {
         setApuesta({ ...apuesta, winner: team })
+        console.log(apuesta)
     }
 
     const hadleChange = (e) => {
@@ -29,9 +30,9 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
                 ...apuesta,
                 [name]: value
             })
-            if(e.target.form[2].value != '') {
+            if(e.target.form[3].value != '') {
                 
-                e.target.form[4].focus()
+                e.target.form[5].focus()
             }else{
                 
                 console.log(e.target.form[2].value)
@@ -45,6 +46,7 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
         setApuesta({ ...apuesta, id: match.id })
         if (apuesta.winner == match.home_team.name && apuesta.home_goals < apuesta.away_goals) { setError('Resultado Imposible'); return false }
         if (apuesta.winner == match.away_team.name && apuesta.away_goals < apuesta.home_goals) { setError('Resultado Imposible'); return false }
+        if(apuesta.winner == 'Draw' && apuesta.away_goals != apuesta.home_goals) { setError('Resultado Imposible'); return false }
         console.log('apuesta:', apuesta.winner, 'resultado:', apuesta.home_goals, apuesta.away_goals)
         try {
             newApuesta(apuesta, apuesta.name.split('@')[0] + '_' + match.home_team_country + '_' + match.away_team_country)
@@ -70,9 +72,12 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
                 </DialogTitle>
                 <Divider />
                 <Typography sx={{ textAlign: 'center', m: 1 }}>Elige al ganador:</Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-around', m: 1 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-around', m: 1, gap: 1 }}>
                     <Button variant={apuesta.winner == match.home_team.name ? 'contained' : 'outlined'} sx={{ p: 2 }} color='success' onClick={() => handleWinner(match.home_team.name)}>
                         <img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${match.home_team.name.split(' ').join('_')}.jpg`} width="30" height='25' />
+                    </Button>
+                    <Button variant={apuesta.winner != match.home_team.name && apuesta.winner != match.away_team.name && apuesta.winner != null ? 'contained' : 'outlined'} sx={{ p: 2 }} color='success' onClick={() => handleWinner('Draw')}>
+                        Draw
                     </Button>
                     <Button variant={apuesta.winner == match.away_team.name ? 'contained' : 'outlined'} sx={{ p: 2 }} color='success' onClick={() => handleWinner(match.away_team.name)}>
                         <img src={`https://www.sciencekids.co.nz/images/pictures/flags96/${match.away_team.name.split(' ').join('_')}.jpg`} width="30" height='25' />
