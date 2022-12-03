@@ -13,7 +13,7 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
 
     const handleWinner = (team) => {
         setApuesta({ ...apuesta, winner: team })
-        console.log(apuesta)
+        // console.log(apuesta)
     }
 
     const hadleChange = (e) => {
@@ -35,7 +35,7 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
                 e.target.form[5].focus()
             }else{
                 
-                console.log(e.target.form[2].value)
+                // console.log(e.target.form[2].value)
             }
             
         }
@@ -44,8 +44,8 @@ export const ModalApostar = ({ open, modalApuesta, match, apuesta, setApuesta, e
     const handleApostar = async (e) => {
         e.preventDefault()
         setApuesta({ ...apuesta, id: match.id })
-        if (apuesta.winner == match.home_team.name && apuesta.home_goals < apuesta.away_goals) { setError('Resultado Imposible'); return false }
-        if (apuesta.winner == match.away_team.name && apuesta.away_goals < apuesta.home_goals) { setError('Resultado Imposible'); return false }
+        if (apuesta.winner == match.home_team.name && apuesta.home_goals <= apuesta.away_goals) { setError('Resultado Imposible'); return false }
+        if (apuesta.winner == match.away_team.name && apuesta.away_goals <= apuesta.home_goals) { setError('Resultado Imposible'); return false }
         if(apuesta.winner == 'Draw' && apuesta.away_goals != apuesta.home_goals) { setError('Resultado Imposible'); return false }
         console.log('apuesta:', apuesta.winner, 'resultado:', apuesta.home_goals, apuesta.away_goals)
         try {
