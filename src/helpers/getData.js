@@ -1,11 +1,27 @@
 import { collection, doc, FieldValue, getDoc, getDocs, increment, query, setDoc, updateDoc, where } from "firebase/firestore"
 import { db } from "../firebase"
+// import { partidos } from "../partidos"
 
 const URL = 'https://world-cup-json-2022.fly.dev/'
 
 export const getAllMatches = async () => {
         const response = await fetch('https://worldcupjson.net/matches')
-        const data = await response.json()
+        const partidos = await response.json()
+        const data = partidos.map(x => {
+
+                if(x.stage_name === "First stage") return x
+                if(x.status !== "completed") return x
+
+                if(x.home_team.goals == x.away_team.goals){
+
+                        return {
+                                ...x,
+                                winner: 'Draw'
+                        }
+                }else{
+                        return x
+                }
+        })
         return data
 }
 
