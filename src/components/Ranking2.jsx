@@ -22,6 +22,7 @@ export const Ranking2 = () => {
         if (e.target.value == 2) setPartidos(matches.filter(x => x.stage_name == "Round of 16"))
         if (e.target.value == 3) setPartidos(matches.filter(x => x.stage_name == "Quarter-final"))
         if (e.target.value == 4) setPartidos(matches.filter(x => x.stage_name == "Semi-final"))
+        if (e.target.value == 7) setPartidos(matches.filter(x => x.stage_name == "Play-off for third place"))
         if (e.target.value == 5) setPartidos(matches.filter(x => x.stage_name == "Final"))
         if (e.target.value == 6) setPartidos(matches.filter(x => new Date(x.datetime).getDate() == new Date().getDate()))
     }
@@ -40,6 +41,7 @@ export const Ranking2 = () => {
                 <MenuItem value={2}>Octavos</MenuItem>
                 <MenuItem value={3}>Cuartos</MenuItem>
                 <MenuItem value={4}>Semis</MenuItem>
+                <MenuItem value={7}>Tercer Lugar</MenuItem>
                 <MenuItem value={5}>Final</MenuItem>
             </Select>
             {

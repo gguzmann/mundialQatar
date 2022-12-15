@@ -8,7 +8,7 @@ export const Apostar = () => {
   const [partidos, setPartidos] = useState([])
   const [bets, setBets] = useState([])
 
-  const [select, setSelect] = useState(2)
+  const [select, setSelect] = useState(6)
 
   const {matches, apuestas} = useStore()
   useEffect(() => {
@@ -34,6 +34,7 @@ export const Apostar = () => {
     if(e.target.value == 3) setPartidos(matches.filter(x => x.stage_name == "Quarter-final"))
     if(e.target.value == 4) setPartidos(matches.filter(x => x.stage_name == "Semi-final"))
     if(e.target.value == 5) setPartidos(matches.filter(x => x.stage_name == "Final"))
+    if(e.target.value == 7) setPartidos(matches.filter(x => x.stage_name == "Play-off for third place"))
     if(e.target.value == 6) setPartidos(matches.filter(x => new Date(x.datetime).getDate() == new Date().getDate()))
   }
 
@@ -46,6 +47,7 @@ export const Apostar = () => {
         <MenuItem value={2}>Octavos</MenuItem>
         <MenuItem value={3}>Cuartos</MenuItem>
         <MenuItem value={4}>Semis</MenuItem>
+        <MenuItem value={7}>Tercer Lugar</MenuItem>
         <MenuItem value={5}>Final</MenuItem>
       </Select>
       {
